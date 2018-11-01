@@ -1,0 +1,33 @@
+{
+  "name": "lvlzus-backend",
+  "version": "1.0.0",
+  "description": "Serverless webpack example using Typescript",
+  "scripts": {
+    "start": "NODE_ENV=DEV nodemon --exec ts-node src/local.ts"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "0.0.22",
+    "@types/koa": "^2.0.45",
+    "@types/koa-router": "^7.0.27",
+    "@types/mysql": "^2.15.4",
+    "@types/node": "^8.0.57",
+    "nodemon": "^1.17.3",
+    "serverless-domain-manager": "^2.3.6",
+    "serverless-webpack": "^4.0.0",
+    "ts-loader": "^2.3.7",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "2",
+    "dotenv": "^5.0.1",
+    "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.1",
+    "mysql": "^2.15.0",
+    "serverless-http": "^1.5.5"
+  }
+}

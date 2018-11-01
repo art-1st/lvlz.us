@@ -1,0 +1,92 @@
+service:
+  name: lvlzUs-api
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+  - serverless-domain-manager
+  
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  enviroments:
+    prod: production
+    staging: staging
+    dev: develop
+  domains:
+    prod: api.lvlz.us
+    staging: staging-api.lvlz.us
+    dev: dev-api.lvlz.us
+
+  customDomain:
+    basePath: ""
+    domainName: ${self:custom.domains.${self:custom.stage}}
+    stage: "${self:custom.stage}"
+    certificateName: lvlz.us
+    createRoute53Record: true
+    endpointType: edge
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ap-northeast-2
+  stage: dev
+  environment:
+    NODE_ENV: ${self:custom.enviroments.${self:custom.stage}}
+    DB_HOST: ${file(./env.js):env.DB_HOST}
+    DB_USER: ${file(./env.js):env.DB_USER}
+    DB_PASSWORD: ${file(./env.js):env.DB_PASSWORD}
+    DB_DATABASE: ${file(./env.js):env.DB_DATABASE}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ec2:CreateNetworkInterface"
+        - "ec2:DescribeNetworkInterfaces"
+        - "ec2:DetachNetworkInterface"
+        - "ec2:DeleteNetworkInterface"
+      Resource: "*"
+
+functions:
+  api:
+    handler: src/lambda.handler
+    memorySize: 256
+    timeout: 20s
+    events:
+      - schedule:
+          rate: rate(5 minutes)
+          enabled: true
+          name: prevent-coldstart
+          description: Preventing lambda cold start
+      - http:
+          path: /
+          method: ANY
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - LAFTEL
+            allowCredentials: false
+      - http:
+          path: /{any+} # this matches any path, the token 'any' doesn't mean anything special
+          method: ANY
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - LAFTEL
+            allowCredentials: false
+    vpc:
+      securityGroupIds:
+        - sg-a4b5cacc
+      subnetIds:
+        - subnet-39bba350
+        - subnet-ecacfaa1

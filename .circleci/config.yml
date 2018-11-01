@@ -1,0 +1,69 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    branches:
+      only:
+        - master
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "front-end/package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "back-end/package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: cd front-end && yarn install
+      - run: cd back-end && yarn install
+
+      - save_cache:
+          paths:
+            - front-end/node_modules
+          key: v1-dependencies-{{ checksum "front-end/package.json" }}
+      - save_cache:
+          paths:
+            - back-end/node_modules
+          key: v1-dependencies-{{ checksum "back-end/package.json" }}
+        
+      # run tests!
+      - run: cd front-end && yarn test
+
+      # build
+      - run: cd front-end && yarn build
+
+      # install aws & serverless cli
+      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      - run: sudo python get-pip.py
+      - run: sudo pip install awscli --upgrade
+      - run: sudo npm install -g serverless
+
+      # upload to s3 and deploy (invalidation)
+      - run: cd front-end && aws s3 rm s3://${s3bucket} --recursive
+      - run: cd front-end && aws s3 cp build s3://${s3bucket} --recursive
+      - run: cd front-end && aws cloudfront create-invalidation --distribution-id ${cfdistid} --paths "/*"
+
+      # back-end deploy
+      - run: cd back-end && serverless deploy --stage prod
