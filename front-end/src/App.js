@@ -15,7 +15,10 @@ const App = () => (
   <LvlzProvider>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={ Home } />
+        {/* <Route exact path="/" component={ Home } /> */}
+        <Route exact path="/" render={() => {
+          return <Redirect to={ `/calendar/${ currentYear }/${ currentMonth }/${ currentDate }` } />;
+        }} />
         <Route exact path="/calendar" render={() => {
           return <Redirect to={ `/calendar/${ currentYear }/${ currentMonth }/${ currentDate }` } />;
         }} />

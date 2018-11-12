@@ -1,5 +1,6 @@
 .main {
     flex: 1 1 auto;
+    position: relative;
     padding: 20px;
     box-sizing: border-box;
     overflow-y: scroll;
@@ -7,12 +8,78 @@
 
     @media only screen and (max-width: 640px) {
         flex: 1 0 auto;
+        padding: 0;
     }
 }
 
 .main :global {
     .header {
         margin-bottom: 40px;
-        height: 80px;
+    }
+
+    .btn-today {
+        display: inline-block;
+        width: 60px;
+        height: 40px;
+        border: 1px solid #e5e5e5;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+        background-color: #fff;
+        font-size: 16px;
+        line-height: 36px;
+        vertical-align: top;
+    }
+
+    .btn-nav {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #e5e5e5;
+        border-radius: 100% 0 0 100%;
+        box-sizing: border-box;
+        background-color: #fff;
+        vertical-align: top;
+
+        & + .btn-today + .btn-nav {
+            border-radius: 0 100% 100% 0;
+        }
+    }
+
+    h2 {
+        display: inline-block;
+        margin: 0 12px;
+        font-size: 24px;
+        line-height: 40px;
+        color: #333;
+
+        strong {
+            display: inline-block;
+            margin-left: 4px;
+            font-weight: 700;
+            color: #222;
+        }
+    }
+
+    .dimmer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 9;
+        background: rgba(0, 0, 0, 0.5);
+        transition: opacity 0.3s ease;
+    }
+
+    .event-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 10;
+        width: 800px;
+        height: 600px;
+        margin: -300px 0 0 -400px;
+        background: #fff;
     }
 }

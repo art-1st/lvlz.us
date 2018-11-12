@@ -15,7 +15,7 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <header className={ styles.sidebar }>
+      <header className={ styles.header }>
         <h1 className="title">
             <div className="title-inner">
                 <Link className="title-link" to="/">

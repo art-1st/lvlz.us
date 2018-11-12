@@ -6,41 +6,35 @@ import { withLvlz } from '../../context/lvlz';
 import styles from './Calendar.module.scss';
 
 class Calendar extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
   state = {
     Y: this.props.match.params.Y,
-    M: Number(this.props.match.params.M) < 10 ? `0${ this.props.match.params.M }` : this.props.match.params.M,
-    D: Number(this.props.match.params.D) < 10 ? `0${ this.props.match.params.D }` : this.props.match.params.D
+    M: Number(this.props.match.params.M) < 10 ? '0' + this.props.match.params.M : this.props.match.params.M,
+    D: Number(this.props.match.params.D) < 10 ? '0' + this.props.match.params.D : this.props.match.params.D,
+    calendarHeight: 0
+  }
+
+  componentDidMount() {
+    this.setState({
+      calendarHeight: this.refs.main.clientHeight
+    });
+    window.onresize = () => {
+      this.setState({
+        calendarHeight: this.refs.main.clientHeight
+      });
+    }
   }
 
   componentWillMount() {
     this.props.setFcDate(`${ this.state.Y }-${ this.state.M }-${ this.state.D }`);
   }
 
-  componentDidMount() {
-    console.log(this.fc);
-  }
-
   render() {
     return (
       <>
         <Sidebar />
-        <main className={ styles.main }>
-          <div className="header">
-            <button onClick={() => { this.fc.prev() } }>prev</button>
-            <button onClick={() => { this.fc.today() } }>today</button>
-            <button onClick={() => { this.fc.next() } }>next</button>
-            <button onClick={() => { 
-              let date = window.prompt('ex. 2018-10-10');
-              this.fc.gotoDate(date);
-            }}>goto</button>
-            <button onClick={() => { this.fc.changeViewWeek() } }>week view</button>
-            <button onClick={() => { this.fc.changeViewMonth() } }>month view</button>            
-          </div>
-          <FullCalendar date={`${this.state.Y}-${this.state.M}-${this.state.D}`} ref={ref => this.fc = ref} />
+        <main className={ styles.main } ref="main">
+          <FullCalendar date={`${ this.state.Y }-${ this.state.M }-${ this.state.D }`} calendarHeight={ this.state.calendarHeight } ref={ref => this.fc = ref} />
         </main>
       </>
     )
