@@ -48,7 +48,7 @@ jobs:
           key: v1-dependencies-{{ checksum "back-end/package.json" }}
         
       # run tests!
-      - run: cd front-end && yarn test
+      # - run: cd front-end && yarn test
 
       # build
       - run: cd front-end && yarn build
