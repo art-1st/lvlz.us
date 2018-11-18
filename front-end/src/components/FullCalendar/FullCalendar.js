@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import { withLvlz } from '../../context/lvlz';
+import { withLvlz } from '../../context/lvlz';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import replaceAll from 'replaceall';
 
 import { Calendar } from 'fullcalendar';
 import 'fullcalendar/dist/locales/ko';
 
 import './FullCalendar.scss';
 
-const API_DOMAIN = process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://api.lvlz.us';
-
 class FullCalendar extends Component {
+
+  API_DOMAIN = this.props.API_DOMAIN
+
   state = {
     onLoad: false,
     date: this.props.date,
@@ -21,7 +23,7 @@ class FullCalendar extends Component {
   componentDidMount() {
     this.Calendar = new Calendar(this.refs.fc, {
       theme: true,
-      locale: 'ko',
+      // locale: 'ko',
       timeZone: 'UTC+09:00',
       defaultView: 'month',
       defaultDate: this.props.date,
@@ -33,17 +35,17 @@ class FullCalendar extends Component {
       },
       eventSources: [
         {
-          url: `${ API_DOMAIN }/calendar/schedule`
+          url: `//${ this.API_DOMAIN }/calendar/schedule`
         },
         {
-          url: `${ API_DOMAIN }/calendar/holiday`,
+          url: `//${ this.API_DOMAIN }/calendar/holiday`,
           color: 'transparent',
           borderColor: 'red',
           textColor: 'red',
           className: 'holiday'
         },
         {
-          url: `${ API_DOMAIN }/calendar/anniversary`,
+          url: `//${ this.API_DOMAIN }/calendar/anniversary`,
           color: '#FF5858',
           textColor: 'white'
         }
@@ -74,17 +76,42 @@ class FullCalendar extends Component {
         // onMouseOver
       },
       eventClick: (calEvent, jsEvent, view) => {
-        axios.get(`${ API_DOMAIN }/event/${ calEvent.event.id }`)
+        this.setState({
+          eventData: { 
+            nowLoading: true,
+            title: calEvent.event.title,
+            className: calEvent.event.classNames
+          }
+        });
+        axios.get(`//${ this.API_DOMAIN }/event/${ calEvent.event.id }`)
         .then((response) => { 
           console.log(response.data[0]);
           this.setState({
             eventData: response.data[0]
           });
+          window.history.replaceState({}, '', `${ document.location.pathname }?event=${response.data[0].id}`);
         });
       }
     });
 
     this.Calendar.render();
+
+    if(this.props.qs.event) {
+      axios.get(`//${ this.API_DOMAIN }/event/${ this.props.qs.event }`)
+        .then((response) => { 
+          let data = response.data[0]
+          let startDate = data.start.substring(0, 10);
+          this.Calendar.gotoDate(startDate);
+          this.setState({
+            date: startDate,
+            eventData: data
+          });
+          window.history.replaceState({}, '', `/calendar/${ replaceAll('/0', '/', replaceAll('-', '/', startDate)) }?event=${response.data[0].id}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 
   componentWillUnmount() {
@@ -129,6 +156,7 @@ class FullCalendar extends Component {
     this.setState({
       eventData: false
     });
+    window.history.replaceState({}, '', document.location.pathname);
   }
 
   render() {
@@ -160,14 +188,27 @@ const EventModal = ({ data, clearEvent }) => {
   return (
     <>
       <div className="dimmer" onClick={ clearEvent }></div>
-      <div className="event-modal">
-        { data.title }
+      <div className={`event-modal ${ data.classNames }`}>
+        {
+          data.nowLoading ?
+          <>
+            <div className="header">
+              <h2>{ data.title }</h2>
+            </div>
+          </>
+          :
+          <>
+            <div className="header">
+              <h2>{ data.title }</h2>
+            </div>
+          </>
+        }
       </div>
     </>
   )
 }
   
-// export default withLvlz(({ state, actions }) => ({
-//   nowDate: state.nowDate
-// }))(FullCalendar);
-export default FullCalendar;
+export default withLvlz(({ state, actions }) => ({
+  API_DOMAIN: state.API_DOMAIN
+}))(FullCalendar);
+// export default FullCalendar;

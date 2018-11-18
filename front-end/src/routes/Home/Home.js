@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Sidebar } from '../../components';
-import { Link, Redirect } from 'react-router-dom';
+// import { Link, Redirect } from 'react-router-dom';
 import { withLvlz } from '../../context/lvlz';
 
 import './Home.scss';

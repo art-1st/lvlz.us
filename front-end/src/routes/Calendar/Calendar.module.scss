@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .main {
     flex: 1 1 auto;
     position: relative;
@@ -29,6 +31,14 @@
         font-size: 16px;
         line-height: 36px;
         vertical-align: top;
+
+        &:focus {
+            position: relative;
+            z-index: 1;
+            outline: 0;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px #ccc;
+        }
     }
 
     .btn-nav {
@@ -43,6 +53,14 @@
 
         & + .btn-today + .btn-nav {
             border-radius: 0 100% 100% 0;
+        }
+
+        &:focus {
+            position: relative;
+            z-index: 1;
+            outline: 0;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px #ccc;
         }
     }
 
@@ -69,7 +87,8 @@
         left: 0;
         z-index: 9;
         background: rgba(0, 0, 0, 0.5);
-        transition: opacity 0.3s ease;
+        animation-duration: 200ms;
+        animation-name: dimmer;
     }
 
     .event-modal {
@@ -77,9 +96,41 @@
         top: 50%;
         left: 50%;
         z-index: 10;
-        width: 800px;
-        height: 600px;
-        margin: -300px 0 0 -400px;
+        width: 60vw;
+        height: 60vh;
+        margin: -30vh 0 0 -30vw;
+        border-radius: 23px;
         background: #fff;
+        animation-duration: 200ms;
+        animation-name: modal;
+        animation-timing-function: ease;
+
+        .header {
+            padding: 40px 24px;
+            border-radius: 23px 23px 0 0;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #fff;
+        }
+    }
+}
+
+
+@keyframes :global(dimmer) {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes :global(modal) {
+    from {
+        top: 100%;
+    }
+    to {
+        top: 50%;
     }
 }

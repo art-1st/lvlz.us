@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { LvlzProvider } from './context/lvlz';
-import { Home, Calendar, Timeline, Search, NotFound } from './routes';
+import { /* Home, */ Calendar, Timeline, Search, NotFound } from './routes';
 
 import 'reset.css';
 import './App.scss';
@@ -51,8 +51,8 @@ const App = () => (
   </LvlzProvider>
 )
 
-function lastDateOfMonth (Y, M) {
-  return new Date(Y, M, 0).getDate();
-}
+// function lastDateOfMonth (Y, M) {
+//   return new Date(Y, M, 0).getDate();
+// }
 
 export default App;
