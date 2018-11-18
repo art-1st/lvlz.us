@@ -35,6 +35,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+      - run: sudo npm install -g yarn
       - run: cd front-end && yarn install
       - run: cd back-end && yarn install
 
