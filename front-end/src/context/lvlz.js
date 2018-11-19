@@ -7,7 +7,7 @@ const { Provider, Consumer: LvlzConsumer } = Context;
 
 class LvlzProvider extends React.Component {
   state = {
-    API_DOMAIN: process.env.NODE_ENV === 'development' ? 'localhost:4000' : 'api.loveyzin.us',
+    API_DOMAIN: process.env.NODE_ENV === 'development' ? 'localhost:4000' : 'api.lovelyzin.us',
     nowDate: moment().format('YYYY-MM-DD'),
     nowYear: moment().format('YYYY'),
     nowMonth: moment().format('M'),
