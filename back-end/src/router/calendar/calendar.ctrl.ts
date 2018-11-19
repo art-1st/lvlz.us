@@ -13,7 +13,7 @@ let resultParser = (results) => {
 }
 
 export const schedule = async (ctx: Context) => {
-    let sql = 'SELECT id, title, className, allDay, start, end FROM events WHERE (`start` BETWEEN "' + ctx.query.start + '" AND "' + ctx.query.end + '" OR `end` BETWEEN "' + ctx.query.start + '" AND "' + ctx.query.end + '")';
+    let sql = 'SELECT id, title, className, allDay, start, end FROM events_new WHERE (`start` BETWEEN "' + ctx.query.start + '" AND "' + ctx.query.end + '" OR `end` BETWEEN "' + ctx.query.start + '" AND "' + ctx.query.end + '")';
     
     await Database.query(sql)
     .then(results => {

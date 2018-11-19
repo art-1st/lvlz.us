@@ -18,14 +18,6 @@ class Sidebar extends Component {
         <h1 className="title">
             LOGO
         </h1>
-        <div className={ styles['instant-search']}>
-            <div className="instant-search-inner">
-                <input type="text"/>
-                <button className="ico-search">
-                    <MdSearch size={ 22 } />
-                </button>
-            </div>
-        </div>
         <nav className={ styles.nav }>
             <ul>
                 <li className="nav-item" data-item="home">

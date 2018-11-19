@@ -1,5 +1,5 @@
 service:
-  name: lvlzUs-api
+  name: lovelyzInUs-api
 
 # Add the serverless-webpack plugin
 plugins:
@@ -13,15 +13,15 @@ custom:
     staging: staging
     dev: develop
   domains:
-    prod: api.lvlz.us
-    staging: staging-api.lvlz.us
-    dev: dev-api.lvlz.us
+    prod: api.lovelyzin.us
+    staging: staging-api.lovelyzin.us
+    dev: dev-api.lovelyzin.us
 
   customDomain:
     basePath: ""
     domainName: ${self:custom.domains.${self:custom.stage}}
     stage: "${self:custom.stage}"
-    certificateName: lvlz.us
+    certificateName: lovelyzin.us
     createRoute53Record: true
     endpointType: edge
 

@@ -23,7 +23,7 @@ class FullCalendar extends Component {
   componentDidMount() {
     this.Calendar = new Calendar(this.refs.fc, {
       theme: true,
-      // locale: 'ko',
+      locale: 'ko',
       timeZone: 'UTC+09:00',
       defaultView: 'month',
       defaultDate: this.props.date,
@@ -96,8 +96,8 @@ class FullCalendar extends Component {
 
     this.Calendar.render();
 
-    if(this.props.qs.event) {
-      axios.get(`//${ this.API_DOMAIN }/event/${ this.props.qs.event }`)
+    if(this.props.queryString.event) {
+      axios.get(`//${ this.API_DOMAIN }/event/${ this.props.queryString.event }`)
         .then((response) => { 
           let data = response.data[0]
           let startDate = data.start.substring(0, 10);
@@ -188,20 +188,13 @@ const EventModal = ({ data, clearEvent }) => {
   return (
     <>
       <div className="dimmer" onClick={ clearEvent }></div>
-      <div className={`event-modal ${ data.classNames }`}>
+      <div className={`event-modal ${ data.className }`}>
+        <div className="header">
+          <h2>{ data.title }</h2>
+        </div>
         {
-          data.nowLoading ?
-          <>
-            <div className="header">
-              <h2>{ data.title }</h2>
-            </div>
-          </>
-          :
-          <>
-            <div className="header">
-              <h2>{ data.title }</h2>
-            </div>
-          </>
+          data.nowLoading &&
+          'now loading...'
         }
       </div>
     </>
