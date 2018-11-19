@@ -60,7 +60,8 @@ functions:
           path: /
           method: ANY
           cors:
-            origin: '*'
+            origin: 
+              - 'https://lovelyzin.us'
             headers:
               - Content-Type
               - X-Amz-Date
@@ -74,7 +75,8 @@ functions:
           path: /{any+} # this matches any path, the token 'any' doesn't mean anything special
           method: ANY
           cors:
-            origin: '*'
+            origin:
+              - 'https://lovelyzin.us'
             headers:
               - Content-Type
               - X-Amz-Date
