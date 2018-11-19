@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
+import reactGA from 'react-ga';
 import axios from 'axios';
 import { withLvlz } from '../../context/lvlz';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
@@ -64,6 +65,7 @@ class FullCalendar extends Component {
 
           this.setState({ date: dD });
           window.history.replaceState({}, '', `/calendar/${ dR }`);
+          reactGA.pageview(`/calendar/${ dR }`);
         }
       },
       // dateClick: (data) => {
@@ -90,6 +92,7 @@ class FullCalendar extends Component {
             eventData: response.data[0]
           });
           window.history.replaceState({}, '', `${ document.location.pathname }?event=${response.data[0].id}`);
+          reactGA.pageview(`${ document.location.pathname }?event=${response.data[0].id}`);
         });
       }
     });
@@ -107,6 +110,7 @@ class FullCalendar extends Component {
             eventData: data
           });
           window.history.replaceState({}, '', `/calendar/${ replaceAll('/0', '/', replaceAll('-', '/', startDate)) }?event=${response.data[0].id}`);
+          reactGA.pageview(`/calendar/${ replaceAll('/0', '/', replaceAll('-', '/', startDate)) }?event=${response.data[0].id}`);
         })
         .catch((error) => {
           console.log(error);
@@ -157,6 +161,7 @@ class FullCalendar extends Component {
       eventData: false
     });
     window.history.replaceState({}, '', document.location.pathname);
+    reactGA.pageview(document.location.pathname);
   }
 
   render() {
