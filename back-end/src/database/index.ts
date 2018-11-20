@@ -5,7 +5,7 @@ export default new class Database {
 
     createConnection() {
         this.connection = mysql.createConnection({
-            host: process.env.DB_HOST,
+            host: process.env.NODE_ENV === 'DEV' ? process.env.DB_HOST_DEV : process.env.DB_HOST,
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
             // database: process.env.NODE_ENV === 'develop' ? process.env.DB_DATABASE + '_dev' : process.env.DB_DATABASE,
