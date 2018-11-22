@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import { Sidebar, FullCalendar } from '../../components';
 import { withLvlz } from '../../context/lvlz';
-import queryString from 'query-string';
 
 import styles from './Calendar.module.scss';
 
@@ -12,7 +11,7 @@ class Calendar extends Component {
     Y: this.props.match.params.Y,
     M: Number(this.props.match.params.M) < 10 ? '0' + this.props.match.params.M : this.props.match.params.M,
     D: Number(this.props.match.params.D) < 10 ? '0' + this.props.match.params.D : this.props.match.params.D,
-    queryString: queryString.parse(this.props.location.search),
+    eventId: this.props.match.params.id,
     calendarHeight: 0
   }
 
@@ -34,9 +33,9 @@ class Calendar extends Component {
   render() {
     return (
       <>
-        <Sidebar />
+        <Sidebar menu="calendar" />
         <main className={ styles.main } ref="main">
-          <FullCalendar date={`${ this.state.Y }-${ this.state.M }-${ this.state.D }`} calendarHeight={ this.state.calendarHeight } queryString={ this.state.queryString } />
+          <FullCalendar date={`${ this.state.Y }-${ this.state.M }-${ this.state.D }`} calendarHeight={ this.state.calendarHeight } eventId={ this.state.eventId } />
         </main>
       </>
     )

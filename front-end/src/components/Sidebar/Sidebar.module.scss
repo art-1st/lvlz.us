@@ -35,19 +35,26 @@ $sidebar-width-mobile: 80px;
 .nav {
     flex: 1 1 auto;
     justify-content: flex-start;
-    padding: 15px;
+    padding: 15px 0;
 
     & :global {
-        .nav-item {    
-            &[data-item="timeline"] svg {
-                transform: rotate(90deg);
+        .nav-item {
+            &.is-disabled {
+                opacity: 0.5;
+                pointer-events: none;
             }
 
+            &.is-active {
+                border-right: 4px solid #6395b7;
 
-    
+                a {
+                    font-weight: bold;
+                }
+            }
+
             a {
                 display: block;
-                padding: 8px 0;
+                padding: 8px 15px;
                 color: #333;
                 line-height: 34px;
                 text-decoration: none;
@@ -58,12 +65,12 @@ $sidebar-width-mobile: 80px;
         .item-ico {
             width: 24px;
             height: 24px;
-            vertical-align: middle;
+            vertical-align: -6px;
         }
     
         .item-title {
             display: inline-block;
-            margin-left: 8px;
+            margin-left: 16px;
         }
     }
 }

@@ -10,7 +10,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <Sidebar />
+        <Sidebar menu="home" />
         <main>
           Home
         </main>

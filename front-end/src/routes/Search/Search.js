@@ -8,7 +8,7 @@ class Search extends Component {
   render() {
     return (
       <>
-        <Sidebar />
+        <Sidebar menu="search" />
         <main>Search</main>
       </>
     )

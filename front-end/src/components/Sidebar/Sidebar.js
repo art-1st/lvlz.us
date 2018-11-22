@@ -9,42 +9,64 @@ import styles from './Sidebar.module.scss';
 class Sidebar extends Component {
   
   state = {
-    
+    current: this.props.menu
   }
+
+  menus = [
+    {
+      url: "/",
+      icon: MdHome,
+      title: "홈",
+      isActive: this.props.menu === "Home",
+      isDisabled: true
+    },
+    {
+      url: "/calendar",
+      icon: GoCalendar,
+      title: "캘린더",
+      isActive: this.props.menu === "calendar"
+    },
+    {
+      url: "/timeline",
+      icon: MdTimeline,
+      title: "타임라인",
+      isActive: this.props.menu === "timeline",
+      isDisabled: true
+    },
+    {
+      url: "/search",
+      icon: MdSearch,
+      title: "검색",
+      isActive: this.props.menu === "search"
+    }
+  ]
 
   render() {
     return (
       <header className={ styles.header }>
         <h1 className="title">
-            LOGO
+          LOGO
         </h1>
         <nav className={ styles.nav }>
-            <ul>
-                <li className="nav-item" data-item="home">
-                    <Link to="/">
-                        <MdHome className="item-ico" />
-                        <span className="item-title">Home</span>
+          <ul>
+            {
+              this.menus.map((value, i) => {
+                return (
+                  <li
+                    className={`nav-item ${ value.isActive ? 'is-active' : '' } ${ value.isDisabled ? 'is-disabled' : '' }`}
+                    key={ i }
+                  >
+                    <Link to={ value.url }>
+                      <value.icon className="item-ico" />
+                      <span className="item-title">
+                        { value.title }
+                      </span>
                     </Link>
-                </li>
-                <li className="nav-item" data-item="calendar">
-                    <Link to="/calendar">
-                        <GoCalendar className="item-ico" />
-                        <span className="item-title">Calendar</span>
-                    </Link>
-                </li>
-                <li className="nav-item" data-item="timeline">
-                    <Link to="/timeline">
-                        <MdTimeline className="item-ico" />
-                        <span className="item-title">Timeline</span>
-                    </Link>
-                </li>
-                <li className="nav-item" data-item="search">
-                    <Link to="/search">
-                        <MdSearch className="item-ico" />
-                        <span className="item-title">Search</span>
-                    </Link>
-                </li>
-            </ul>
+                  </li>
+                );
+              })
+            }
+          </ul>
         </nav>
       </header>
     )

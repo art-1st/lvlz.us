@@ -1,3 +1,4 @@
+@import '../../scss/functions';
 @import '../../scss/variables';
 
 .main {
@@ -64,7 +65,7 @@
         }
     }
 
-    h2 {
+    .date {
         display: inline-block;
         margin: 0 12px;
         font-size: 24px;
@@ -106,13 +107,194 @@
         animation-timing-function: ease;
 
         .header {
-            padding: 40px 24px;
+            margin: 0;
+            padding: 40px 32px;
             border-radius: 23px 23px 0 0;
         }
 
-        h2 {
+        .title {
             font-size: 2em;
-            color: #333;
+        }
+
+        .category {
+            display: block;
+            margin-top: 12px;
+            font-size: 1.2em;
+            opacity: 0.65;
+
+            svg {
+                position: relative;
+                top: 1px;
+            }
+
+            strong {
+                display: inline-block;
+                margin-left: 8px;
+                vertical-align: top;
+            }
+        }
+
+        &.c-tv {
+            .header {
+                background-color: map-deep-get($event-class, tv, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, tv, color);
+                }
+            }
+        }
+        &.c-radio {
+            .header {
+                background-color: map-deep-get($event-class, radio, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, radio, color);
+                }
+            }
+        }
+    
+        &.c-tv.tv-record {
+            .header {
+                background-color: map-deep-get($event-class, tv, tv-record, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, tv, tv-record, color);
+                }
+            }
+        }
+    
+        &.c-fansign {
+            .header {
+                background-color: map-deep-get($event-class, fansign, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, fansign, color);
+                }
+            }
+        }
+    
+        &.c-event,
+        &.c-event.event-local {
+            .header {
+                background-color: map-deep-get($event-class, event, event-local, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, event, event-local, color);
+                }
+            }
+        }
+
+        &.c-event.event-univ {
+            .header {
+                background-color: map-deep-get($event-class, event, event-univ, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, event, event-univ, color);
+                }
+            }
+        }
+    
+        &.c-concert {
+            .header {
+                background-color: map-deep-get($event-class, concert, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, concert, color);
+                }
+            }
+        }
+    
+        &.c-vlive {
+            .header {
+                background-color: map-deep-get($event-class, vlive, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, vlive, color);
+                }
+            }
+        }
+        
+        &.c-vlive.vlive-chplus {
+            .header {
+                background: map-deep-get($event-class, vlive, vlive-chplus, bgMozGradient);
+                background: map-deep-get($event-class, vlive, vlive-chplus, bgWebkitGradient);
+                background: map-deep-get($event-class, vlive, vlive-chplus, bgGradient);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, vlive, vlive-chplus, color);
+                }
+            }
+        }
+
+        &.c-etc {
+            .header {
+                background-color: map-deep-get($event-class, etc, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, etc, color);
+                }
+            }
+        }
+
+        .maps {
+            position: relative;
+            min-height: 300px;
+            background: #ccc;
+
+            .overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 20px 32px;
+                background: rgba(0, 0, 0, 0.25);
+                color: #fff;
+                box-sizing: border-box;
+            }
+
+            .place {
+                font-size: 1.4em;
+                font-weight: bold;
+            }
+
+            .address {
+                display: block;
+                margin-top: 6px;
+                opacity: 0.7;
+            }
+        }
+
+        .content {
+            padding: 32px 32px 24px;
+
+            .item {
+                font-size: 1.2em;
+                margin-top: 24px;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+
+            .item-name {
+                display: block;
+                font-weight: bold;
+            }
+
+            .item-data {
+                display: block;
+                margin-top: 8px;
+            }
         }
     }
 }

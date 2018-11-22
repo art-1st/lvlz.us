@@ -8,7 +8,7 @@ class Timeline extends Component {
   render() {
     return (
       <>
-        <Sidebar />
+        <Sidebar menu="timeline" />
         <main>
           Timeline
         </main>

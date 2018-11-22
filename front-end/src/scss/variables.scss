@@ -1,35 +1,57 @@
 // Class
 $event-class: (
     tv: (
-        backgroundColor: #00a9ff,
-        color: #fff
+        bgColor: #00a9ff,
+        color: #fff,
+        //
+        tv-record: (
+            bgColor: #776b13,
+            color: #fff,
+        )
     ),
     radio: (
-        backgroundColor: #ffbb3b,
-        color: #fff
-    ),
-    record: (
-        backgroundColor: #776b13,
-        color: #fff
+        bgColor: #ffbb3b,
+        color: #fff,
+        //
+        radio-record: (
+            bgColor: #ffbb3b,
+            color: #fff,
+        )
     ),
     fansign: (
-        backgroundColor: #03bd9e,
+        bgColor: #03bd9e,
         color: #fff
     ),
-    ufest: (
-        backgroundColor: #c347ae,
-        color: #fff
-    ),
-    localevent: (
-        backgroundColor: #4947c3,
-        color: #fff
+    event: (
+        bgColor: #4947c3,
+        color: #fff,
+        //
+        event-univ: (
+            bgColor: #c347ae,
+            color: #fff
+        ),
+        event-local: (
+            bgColor: #4947c3,
+            color: #fff,
+        )
     ),
     concert: (
-        backgroundColor: #c34781,
+        bgColor: #c34781,
         color: #fff
     ),
     vlive: (
-        backgroundColor: #54f7ff,
-        color: #46465a
+        bgColor: #54f7ff,
+        color: #46465a,
+        //
+        vlive-chplus: (
+            bgMozGradient: -moz-linear-gradient(-45deg, #e4557a 0%, #5a3eb8 100%),
+            bgWebkitGradient: -webkit-linear-gradient(-45deg, #e4557a 0%,#5a3eb8 100%),
+            bgGradient: linear-gradient(135deg, #e4557a 0%,#5a3eb8 100%),
+            color: #fff
+        )
+    ),
+    etc: (
+        bgColor: #d85ac3,
+        color: #fff
     )
 )

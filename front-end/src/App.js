@@ -42,6 +42,7 @@ const App = () => (
           : <Redirect to={ `/calendar/${ Y < 2000 ? 2000 : Y > 2100 ? currentYear : Y }/${ M < 1 ? 1 : M > 12 ? 12 : M > 10 && M.length === 2 ? M.substring(1, 1) : M }/1` } />;
         }} />
         <Route exact path="/calendar/:Y([0-9]{4})/:M([0-9]{1,2})/:D([1-9]|[1-2][0-9]|3[0-1])" component={ withGA(Calendar) } />
+        <Route exact path="/calendar/:Y([0-9]{4})/:M([0-9]{1,2})/:D([1-9]|[1-2][0-9]|3[0-1])/event/:id" component={ withGA(Calendar) } />
         <Route exact path="/timeline" component={ withGA(Timeline) } />
         <Route exact path="/search" component={ withGA(Search) } />
         <Route component={ withGA(NotFound) } />

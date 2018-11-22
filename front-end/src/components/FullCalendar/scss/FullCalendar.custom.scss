@@ -83,16 +83,16 @@
 --------------------------------------------------------------------------------------------------*/
 
 .fc .fc-body .fc-event {
-    &[class*="tv-"] {
-        background-color: map-deep-get($event-class, tv, backgroundColor);
+    &.c-tv {
+        background-color: map-deep-get($event-class, tv, bgColor);
         color: map-deep-get($event-class, tv, color);
 
         // &:after {
         //     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 169, 255, 1) 75%, rgba(0, 169, 255, 1) 100%);
         // }
     }
-    &[class*="r-"] {
-        background-color: map-deep-get($event-class, radio, backgroundColor);
+    &.c-radio {
+        background-color: map-deep-get($event-class, radio, bgColor);
         color: map-deep-get($event-class, radio, color);
 
         // &:after {
@@ -100,13 +100,13 @@
         // }
     }
 
-    &.tv-record {
-        background-color: map-deep-get($event-class, record, backgroundColor);
-        color: map-deep-get($event-class, record, color);
+    &.c-tv.tv-record {
+        background-color: map-deep-get($event-class, tv, tv-record, bgColor);
+        color: map-deep-get($event-class, tv, tv-record, color);
     }
 
-    &.e-fansign {
-        background-color: map-deep-get($event-class, fansign, backgroundColor);
+    &.c-fansign {
+        background-color: map-deep-get($event-class, fansign, bgColor);
         color: map-deep-get($event-class, fansign, color);
 
         // &:after {
@@ -114,26 +114,26 @@
         // }
     }
 
-    &.e-univ-festival {
-        background-color: map-deep-get($event-class, ufest, backgroundColor);
-        color: map-deep-get($event-class, ufest, color);
+    &.c-event.event-univ {
+        background-color: map-deep-get($event-class, event, event-univ, bgColor);
+        color: map-deep-get($event-class, event, event-univ, color);
 
         // &:after {
         //     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(195, 71, 174, 1) 75%, rgba(195, 71, 174, 1) 100%);
         // }
     }
 
-    &.e-local-event {
-        background-color: map-deep-get($event-class, localevent, backgroundColor);
-        color: map-deep-get($event-class, localevent, color);
+    &.c-event.event-local {
+        background-color: map-deep-get($event-class, event, event-local, bgColor);
+        color: map-deep-get($event-class, event, event-local, color);
 
         // &:after {
         //     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(73, 71, 195, 1) 75%, rgba(73, 71, 195, 1) 100%);
         // }
     }
 
-    &.e-concert {
-        background-color: map-deep-get($event-class, concert, backgroundColor);
+    &.c-concert {
+        background-color: map-deep-get($event-class, concert, bgColor);
         color: map-deep-get($event-class, concert, color);
 
         // &:after {
@@ -141,13 +141,29 @@
         // }
     }
 
-    &.vapp {
-        background-color: map-deep-get($event-class, vlive, backgroundColor);
+    &.c-vlive {
+        background-color: map-deep-get($event-class, vlive, bgColor);
         color: map-deep-get($event-class, vlive, color);
 
         // &:after {
         //     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(84, 247, 255, 1) 75%, rgba(84, 247, 255, 1) 100%);
         // }
+    }
+    
+    &.c-vlive.vlive-chplus {
+        background: map-deep-get($event-class, vlive, vlive-chplus, bgMozGradient);
+        background: map-deep-get($event-class, vlive, vlive-chplus, bgWebkitGradient);
+        background: map-deep-get($event-class, vlive, vlive-chplus, bgGradient);
+        color: map-deep-get($event-class, vlive, vlive-chplus, color);
+
+        // &:after {
+        //     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(84, 247, 255, 1) 75%, rgba(84, 247, 255, 1) 100%);
+        // }
+    }
+
+    &.c-etc {
+        background-color: map-deep-get($event-class, etc, bgColor);
+        color: map-deep-get($event-class, etc, color);
     }
 }
 
