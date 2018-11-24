@@ -39,14 +39,14 @@ jobs:
       - run: cd front-end && yarn install
       - run: cd back-end && yarn install
 
-      - save_cache:
-          paths:
-            - front-end/node_modules
-          key: v1-dependencies-{{ checksum "front-end/package.json" }}
-      - save_cache:
-          paths:
-            - back-end/node_modules
-          key: v1-dependencies-{{ checksum "back-end/package.json" }}
+      # - save_cache:
+      #     paths:
+      #       - front-end/node_modules
+      #     key: v1-dependencies-{{ checksum "front-end/package.json" }}
+      # - save_cache:
+      #     paths:
+      #       - back-end/node_modules
+      #     key: v1-dependencies-{{ checksum "back-end/package.json" }}
         
       # run tests!
       - run: cd front-end && yarn test
