@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import reactGA from 'react-ga';
 import axios from 'axios';
+import moment from 'moment';
+import { NaverMap, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 import { withLvlz } from '../../context/lvlz';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { MdTv } from 'react-icons/md';
+import {
+  FaAngleLeft,
+  FaAngleDoubleLeft,
+  FaAngleRight,
+  FaAngleDoubleRight,
+  FaRegClock
+} from 'react-icons/fa';
+import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 
 import { YYYYMMDDHyphenToSlash, YYYMMDDtoYYYYMD } from '../../tools/misc';
 import { Calendar } from 'fullcalendar';
@@ -19,6 +27,8 @@ class FullCalendar extends Component {
 
   state = {
     onLoad: false,
+    enableYearCalModal: false,
+    yearCalData: parseFloat(this.props.date.substring(0, 4)),
     date: this.props.date,
     eventData: false
   }
@@ -81,12 +91,14 @@ class FullCalendar extends Component {
       // },
       eventClick: (calEvent, jsEvent, view) => {
         this.setState({
+          enableYearCalModal: false,
           eventData: { 
             nowLoading: true,
             title: calEvent.event.title,
             className: calEvent.event.classNames.join(' ')
           }
         });
+        // console.log(this.naverMapRef);
         axios.get(`//${ this.API_DOMAIN }/event/${ calEvent.event.id }`)
         .then((response) => { 
           let data = response.data[0]
@@ -112,7 +124,7 @@ class FullCalendar extends Component {
         this.setState({ eventData: data });
       })
       .catch((error) => {
-        return <Redirect to="/error" />;
+        return <Redirect to="/calendar" />;
       });
     }
   }
@@ -131,7 +143,8 @@ class FullCalendar extends Component {
   //   console.log(nextProps);
   // }
 
-  gotoDate(date) {
+  gotoDate = (date) => {
+    this.setState({ enableYearCalModal: false })
     this.Calendar.gotoDate(date)
   }
 
@@ -155,6 +168,21 @@ class FullCalendar extends Component {
     this.Calendar.changeView('month');
   }
 
+  toggleYearCalModal = () => {
+    this.setState((prevState) => {
+      return {
+        enableYearCalModal: !prevState.enableYearCalModal
+      }
+    });
+  }
+
+  navYearCal = (o) => {
+    let nextYear = o === 'prev' ? this.state.yearCalData - 1 : this.state.yearCalData + 1;
+    this.setState({
+      yearCalData: nextYear
+    });
+  }
+
   clearEvent = () => {
     this.setState({
       eventData: false
@@ -170,16 +198,54 @@ class FullCalendar extends Component {
           this.state.eventData && <EventModal data={ this.state.eventData } clearEvent={ this.clearEvent } />
         }
         <div className="header">
-          <button className="btn-nav" onClick={ this.prev.bind(this) }>
+          <button className="btn-nav nav-prev" onClick={ this.prev.bind(this) } title="이전 달">
             <FaAngleLeft size={ 16 } />
           </button>
           <button className="btn-today" onClick={ this.today.bind(this) }>오늘</button>
-          <button className="btn-nav" onClick={ this.next.bind(this) }>
+          <button className="btn-nav nav-next" onClick={ this.next.bind(this) } title="다음 달">
             <FaAngleRight size={ 16 } />
           </button>
           <h2 className="date">
-            <span>{`${ this.state.date.split('-')[0] }년`}</span>
-            <strong>{`${ parseFloat(this.state.date.split('-')[1]) }월`}</strong>
+            <button className="btn-date" onClick={ this.toggleYearCalModal }>
+              <span>{`${ this.state.date.split('-')[0] }년`}</span>
+              <strong>{`${ parseFloat(this.state.date.split('-')[1]) }월`}</strong>
+              {
+                this.state.enableYearCalModal ?
+                <IoMdArrowDropup size={ 20 } />
+                :
+                <IoMdArrowDropdown size={ 20 } />
+              }
+            </button>
+            {
+              this.state.enableYearCalModal &&
+              <div className="yearcal-modal">
+                <div className="yearcal-modal-header">
+                  <button className="btn-nav nav-prev" onClick={() => { this.navYearCal('prev') }}>
+                    <FaAngleDoubleLeft size={ 20 } />
+                  </button>
+                  <strong className="yearcal-year">{ this.state.yearCalData }년</strong>
+                  <button className="btn-nav nav-next" onClick={() => { this.navYearCal('next') }}>
+                    <FaAngleDoubleRight size={ 20 } />
+                  </button>
+                </div>
+                <div className="yearcal-modal-content">
+                  <ul>
+                    <li><a href={`/calendar/${this.state.yearCalData}/1/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-01-01`) } }>1</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/2/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-02-01`) } }>2</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/3/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-03-01`) } }>3</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/4/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-04-01`) } }>4</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/5/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-05-01`) } }>5</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/6/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-06-01`) } }>6</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/7/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-07-01`) } }>7</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/8/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-08-01`) } }>8</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/9/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-09-01`) } }>9</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/10/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-10-01`) } }>10</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/11/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-11-01`) } }>11</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/12/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-01-01`) } }>12</a></li>
+                  </ul>
+                </div>
+              </div>
+            }
           </h2>
         </div>
         <div ref="fc" />
@@ -189,39 +255,6 @@ class FullCalendar extends Component {
 }
 
 const EventModal = ({ data, clearEvent }) => {
-  const classParser = (aClass) => {
-    let data = {};
-
-    switch(aClass) {
-      case 'c-tv':
-        data = {
-          icon: MdTv,
-          text: '방송'
-        }
-        break;
-      case 'c-vlive':
-        data = {
-          icon: MdTv,
-          text: 'V LIVE'
-        }
-        break;
-      default:
-        data = false
-    }
-
-    return data ?
-    (
-      <>
-        <data.icon />
-        <strong>{ data.text }</strong>
-      </>
-    )
-    :
-    (
-      <></>
-    )
-  }
-
   return (
     <>
       <div className="dimmer" onClick={ clearEvent }></div>
@@ -230,13 +263,18 @@ const EventModal = ({ data, clearEvent }) => {
           <h2 className="title">
             { data.title }
           </h2>
-          <div className="category">
-            { classParser(data.className) }
-          </div>
         </div>
         {
           data.address &&
-          <div className="maps">
+          <div className="map-area">
+            <RenderAfterNavermapsLoaded clientId="3wlAfIr_OW699RBHGz6b" ncpClientId="f5oyftgh9q" submodules={['geocoder']}>
+              <NaverMap
+                style={{
+                  width: '100%',
+                  height: '400px'
+                }}
+              />
+            </RenderAfterNavermapsLoaded>
             <data className="overlay">
               <h3 className="place">{ data.place }</h3>
               <address className="address">{ data.address }</address>
@@ -246,14 +284,37 @@ const EventModal = ({ data, clearEvent }) => {
         <div className="content">
           { data.nowLoading && <div className="loading-dimmer" /> }
           <ul>
-            <li className="item">
-              <strong className="item-name">시작</strong>
-              <span className="item-data">{ data.start }</span>
+            <li className={`item item-time ${ data.allDay ? 'is-allday' : '' }`}>
+              <h3 className="item-name">
+                <FaRegClock />
+                <span>
+                  {
+                    data.allDay ?
+                    '날짜'
+                    :
+                    '시작'
+                  }
+                </span>
+              </h3>
+              <p className="item-data">
+                {
+                  data.allDay ?
+                  moment(data.start).format('M월 D일')
+                  :
+                  moment(data.start).format('M월 D일 HH시 MM분')
+                }
+              </p>
             </li>
-            <li className="item">
-              <strong className="item-name">종료</strong>
-              <span className="item-data">{ data.end }</span>
-            </li>
+            {
+              !data.allDay &&
+              <li className="item item-time">
+                <h3 className="item-name">
+                  <FaRegClock />
+                  <span className="item-name">종료</span>
+                </h3>
+                <p className="item-data">{ moment(data.end).format('M월 D일 HH시 MM분') }</p>
+              </li>
+            }
             {
               data.desc &&
               <li className="item">

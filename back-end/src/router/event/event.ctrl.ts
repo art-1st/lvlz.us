@@ -1,5 +1,4 @@
 import { Context } from 'koa';
-import * as router from 'koa-router';
 import Database from '../../database';
 
 export const event = async (ctx: Context) => {
