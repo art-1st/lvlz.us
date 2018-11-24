@@ -17,6 +17,7 @@ export const geocode = async (ctx: Context) => {
         ctx.body = JSON.stringify(response.data);
     })
     .catch(error => {
+        console.log(error);
         ctx.status = 500;
         ctx.body = 'Error';
     });

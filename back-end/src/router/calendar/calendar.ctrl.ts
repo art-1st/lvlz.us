@@ -2,8 +2,6 @@ import { Context } from 'koa';
 import * as _ from 'lodash';
 import Database from '../../database';
 
-const dateFormat = 'YYYY-MM-DDTHH:mm:ss';
-
 let resultParser = (results) => {
     return _.forEach(JSON.parse(JSON.stringify(results)), (value) => {
         _.update(value, 'allDay', (n) => { return n ? true : false })

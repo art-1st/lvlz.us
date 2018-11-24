@@ -52,7 +52,7 @@ provider:
 functions:
   api:
     handler: src/lambda.handler
-    memorySize: 256
+    memorySize: 128
     timeout: 20s
     warmup: true
     events:
