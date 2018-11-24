@@ -191,7 +191,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        z-index: 9;
+        z-index: 95;
         background: rgba(0, 0, 0, 0.5);
         animation-duration: 200ms;
         animation-name: dimmer;
@@ -202,6 +202,8 @@
         top: 50%;
         left: 50%;
         z-index: 100;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
         width: 60vw;
         height: 80vh;
         margin: -40vh 0 0 -30vw;
@@ -408,7 +410,7 @@
         }
 
         .content {
-            padding: 32px 32px 24px;
+            padding: 32px 32px 48px;
 
             .item {
                 font-size: 1.2em;
@@ -438,7 +440,7 @@
                 }
             }
 
-            .item-info {
+            .item-desc {
                 .item-name svg {
                     top: -2px;
                 }

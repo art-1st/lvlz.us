@@ -36,6 +36,8 @@ provider:
     DB_USER: ${file(./env.js):env.DB_USER}
     DB_PASSWORD: ${file(./env.js):env.DB_PASSWORD}
     DB_DATABASE: ${file(./env.js):env.DB_DATABASE}
+    NCP_AI_CLIENT_ID: ${file(./env.js):env.NCP_AI_CLIENT_ID}
+    NCP_AI_CLIENT_SECRET: ${file(./env.js):env.NCP_AI_CLIENT_SECRET}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
