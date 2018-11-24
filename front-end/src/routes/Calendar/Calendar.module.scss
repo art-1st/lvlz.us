@@ -421,34 +421,34 @@
                 }
             }
 
-            .item-time {
-                float: left;
-                width: 50%;
-                margin-bottom: 48px;
-
-                &.is-allday {
-                    width: 100%;
-                    float: none;
-                }
-
-                & + .item-time {
-                    margin: 0;
-
-                    & + .item {
-                        clear: both;
-                    }
-                }
-            }
-
-            .item-desc {
-                .item-name svg {
-                    top: -2px;
-                }
-            }
-
             .item-name {
                 display: block;
                 font-weight: bold;
+
+                &.item-time {
+                    float: left;
+                    width: 50%;
+                    margin-bottom: 48px;
+    
+                    &.is-allday {
+                        width: 100%;
+                        float: none;
+                    }
+    
+                    & + .item-time {
+                        margin: 0;
+    
+                        & + .item {
+                            clear: both;
+                        }
+                    }
+                }
+
+                &.item-desc {
+                    .item-name svg {
+                        top: -2px;
+                    }
+                }
 
                 svg {
                     position: relative;
@@ -466,6 +466,65 @@
             .item-data {
                 display: block;
                 margin-top: 8px;
+
+                &.item-media {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    white-space: nowrap;
+                    overflow-x: scroll;
+                    margin-top: 16px;
+                    padding-bottom: 24px;
+                }
+            }
+
+            .video-container {
+                display: block;
+                flex: 0 0 480px;
+                position: relative;
+                height: 270px;
+                margin-left: 20px;
+                text-decoration: none;
+                color: #555;
+                box-sizing: border-box;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &.is-not-supported {
+                    overflow: hidden;
+                    border: 1px solid #eee;
+                    border-radius: 8px;
+                    text-align: center;
+                    line-height: 90px;
+
+                    .logo-area {
+                        height: 179px;
+                    }
+
+                    .text {
+                        background-color: #f5f5f5;
+                        border-top: 1px solid #eee;
+                    }
+                }
+
+                &.video-navertv .logo {
+                    position: absolute;
+                    top: 80px;
+                    left: 50%;
+                    margin-left: -67px;
+                    transform: scale(1.5);
+                }
+
+                &.video-vlive .logo-area {
+                    background-color: #54f7ff;
+
+                    img {
+                        width: 50%;
+                        margin-top: 30px;
+                        height: auto;
+                    }
+                }
             }
         }
     }

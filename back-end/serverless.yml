@@ -5,6 +5,7 @@ service:
 plugins:
   - serverless-webpack
   - serverless-domain-manager
+  - serverless-plugin-warmup
   
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -41,6 +42,7 @@ provider:
   iamRoleStatements:
     - Effect: "Allow"
       Action:
+        - "lambda:InvokeFunction"
         - "ec2:CreateNetworkInterface"
         - "ec2:DescribeNetworkInterfaces"
         - "ec2:DetachNetworkInterface"
@@ -52,6 +54,7 @@ functions:
     handler: src/lambda.handler
     memorySize: 256
     timeout: 20s
+    warmup: true
     events:
       - schedule:
           rate: rate(5 minutes)
@@ -63,6 +66,7 @@ functions:
           method: ANY
           cors:
             origin: 
+              - 'http://lovelyzin.us'
               - 'https://lovelyzin.us'
             headers:
               - Content-Type
@@ -78,6 +82,7 @@ functions:
           method: ANY
           cors:
             origin:
+              - 'http://lovelyzin.us'
               - 'https://lovelyzin.us'
             headers:
               - Content-Type

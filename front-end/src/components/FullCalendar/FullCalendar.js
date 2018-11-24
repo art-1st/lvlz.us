@@ -4,6 +4,7 @@ import reactGA from 'react-ga';
 import axios from 'axios';
 import moment from 'moment';
 import { NaverMap, Marker } from 'react-naver-maps';
+import ReactPlayer from 'react-player';
 import { withLvlz } from '../../context/lvlz';
 import {
   FaAngleLeft,
@@ -21,6 +22,7 @@ import {
   IoMdInformationCircleOutline,
   IoMdPlay
 } from 'react-icons/io';
+import { ReactComponent as LogoNaverTv } from '../../assets/svg/navertv.svg';
 
 import { YYYYMMDDHyphenToSlash, YYYMMDDtoYYYYMD } from '../../tools/misc';
 import { Calendar } from 'fullcalendar';
@@ -277,6 +279,15 @@ class EventModal extends Component {
     }
   }
 
+  ReactPlayerConf = {
+    youtube: {
+      playerVars: {
+        controls: 1,
+        showinfo: 1
+      }
+    }
+  }
+
   componentDidMount() {
     if(this.props.data.address) {
       this.getCoords(this.props.data.address);
@@ -420,14 +431,44 @@ class EventModal extends Component {
                     <IoMdPlay />
                     <span>영상</span>
                   </h3>
-                  <div className="item-data">
+                  <div className="item-data item-media">
                     {
                       data.media.split(',').map((data, key) => {
-                        return (
-                          <div key={ key }>
-                            { data }
-                          </div>
-                        )
+                        if(data.indexOf('youtube.com/') > -1) {
+                          return (
+                            <div className="video-container video-youtube">
+                              <ReactPlayer className="video-container" width="100%" height="100%" config={ this.ReactPlayerConf } url={ data } key={ key } />
+                            </div>
+                          );
+                        } else if(data.indexOf('tv.naver.com/') > -1) {
+                          return (
+                            <a href={ data } rel="noopener noreferrer" target="_blank" className="video-container video-navertv is-not-supported">
+                              <div className="logo-area">
+                                <LogoNaverTv className="logo" />
+                              </div>
+                              <p className="text">
+                                네이버TV에서 시청하기
+                              </p>
+                            </a>
+                          )
+                        } else if(data.indexOf('vlive.tv/') > -1) {
+                          return (
+                            <a href={ data } rel="noopener noreferrer" target="_blank" className="video-container video-vlive is-not-supported">
+                              <div className="logo-area">
+                                <img src="/assets/images/logo_vlive.png" alt="V LIVE" />
+                              </div>
+                              <p className="text">
+                                V LIVE에서 시청하기
+                              </p>
+                            </a>
+                          )
+                        } else {
+                          return (
+                            <a href={ data } rel="noopener noreferrer" target="_blank" className="video-container video-unknown is-not-supported">
+                              사이트에서 시청하기
+                            </a>
+                          );
+                        }
                       })
                     }
                   </div>
