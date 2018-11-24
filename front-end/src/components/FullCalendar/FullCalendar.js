@@ -3,22 +3,33 @@ import { Redirect } from 'react-router-dom';
 import reactGA from 'react-ga';
 import axios from 'axios';
 import moment from 'moment';
-import { NaverMap, RenderAfterNavermapsLoaded } from 'react-naver-maps';
+import { NaverMap, Marker } from 'react-naver-maps';
 import { withLvlz } from '../../context/lvlz';
 import {
   FaAngleLeft,
   FaAngleDoubleLeft,
   FaAngleRight,
   FaAngleDoubleRight,
-  FaRegClock
+  FaRegClock,
+  FaMapMarkerAlt,
+  FaMapMarkedAlt,
+  FaLink
 } from 'react-icons/fa';
-import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
+import {
+  IoMdArrowDropdown,
+  IoMdArrowDropup,
+  IoMdInformationCircleOutline,
+  IoMdPlay
+} from 'react-icons/io';
 
 import { YYYYMMDDHyphenToSlash, YYYMMDDtoYYYYMD } from '../../tools/misc';
 import { Calendar } from 'fullcalendar';
 import 'fullcalendar/dist/locales/ko';
 
 import './FullCalendar.scss';
+
+const EVENT_HOLIDAY = require('../../assets/data/holiday.json');
+const EVENT_ANNIVERSARY = require('../../assets/data/anniversary.json');
 
 class FullCalendar extends Component {
 
@@ -51,14 +62,14 @@ class FullCalendar extends Component {
           url: `//${ this.API_DOMAIN }/calendar/schedule`
         },
         {
-          url: `//${ this.API_DOMAIN }/calendar/holiday`,
+          events: EVENT_HOLIDAY,
           color: 'transparent',
           borderColor: 'red',
           textColor: 'red',
           className: 'holiday'
         },
         {
-          url: `//${ this.API_DOMAIN }/calendar/anniversary`,
+          events: EVENT_ANNIVERSARY,
           color: '#FF5858',
           textColor: 'white'
         }
@@ -195,7 +206,7 @@ class FullCalendar extends Component {
     return (
       <>
         {
-          this.state.eventData && <EventModal data={ this.state.eventData } clearEvent={ this.clearEvent } />
+          this.state.eventData && <EventModal data={ this.state.eventData } clearEvent={ this.clearEvent } API_DOMAIN={ this.API_DOMAIN } />
         }
         <div className="header">
           <button className="btn-nav nav-prev" onClick={ this.prev.bind(this) } title="이전 달">
@@ -254,86 +265,180 @@ class FullCalendar extends Component {
   }
 }
 
-const EventModal = ({ data, clearEvent }) => {
-  return (
-    <>
-      <div className="dimmer" onClick={ clearEvent }></div>
-      <div className={`event-modal ${ data.className }`}>
-        <div className="header">
-          <h2 className="title">
-            { data.title }
-          </h2>
-        </div>
-        {
-          data.address &&
-          <div className="map-area">
-            <RenderAfterNavermapsLoaded clientId="3wlAfIr_OW699RBHGz6b" ncpClientId="f5oyftgh9q" submodules={['geocoder']}>
+class EventModal extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      coords: {
+        lat: 37.3595316,
+        lng: 127.1052133
+      }
+    }
+  }
+
+  componentDidMount() {
+    if(this.props.data.address) {
+      this.getCoords(this.props.data.address);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.data.address) {
+      this.getCoords(nextProps.data.address);
+    }
+  }
+
+  getCoords = async (address) => {
+    await axios.get(`//${ this.props.API_DOMAIN }/geocode/${ address }`)
+    .then(response => {
+      this.setState({
+        coords: {
+          lat: response.data.addresses[0].y,
+          lng: response.data.addresses[0].x
+        }
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+  render() {
+    const { data, clearEvent } = this.props;
+
+    return (
+      <>
+        <div className="dimmer" onClick={ clearEvent }></div>
+        <div className={`event-modal ${ data.className }`}>
+          <div className="header">
+            <h2 className="title">
+              { data.title }
+            </h2>
+          </div>
+          {
+            data.address &&
+            <div className="map-area">
               <NaverMap
                 style={{
                   width: '100%',
-                  height: '400px'
+                  height: '480px'
                 }}
-              />
-            </RenderAfterNavermapsLoaded>
-            <data className="overlay">
-              <h3 className="place">{ data.place }</h3>
-              <address className="address">{ data.address }</address>
-            </data>
-          </div>
-        }
-        <div className="content">
-          { data.nowLoading && <div className="loading-dimmer" /> }
-          <ul>
-            <li className={`item item-time ${ data.allDay ? 'is-allday' : '' }`}>
-              <h3 className="item-name">
-                <FaRegClock />
-                <span>
-                  {
-                    data.allDay ?
-                    '날짜'
-                    :
-                    '시작'
-                  }
-                </span>
-              </h3>
-              <p className="item-data">
-                {
-                  data.allDay ?
-                  moment(data.start).format('M월 D일')
-                  :
-                  moment(data.start).format('M월 D일 HH시 MM분')
-                }
-              </p>
-            </li>
-            {
-              !data.allDay &&
-              <li className="item item-time">
+                defaultCenter={ this.state.coords }
+                center={ this.state.coords }
+                defaultZoom={ 12 }
+              >
+                <Marker
+                  position={ this.state.coords }
+                />
+              </NaverMap>
+              <data className="overlay">
+                <FaMapMarkedAlt size={ 40 } />
+                <h3 className="place">{ data.place }</h3>
+                <address className="address">{ data.address }</address>
+              </data>
+            </div>
+          }
+          <div className="content">
+            { data.nowLoading && <div className="loading-dimmer" /> }
+            <ul>
+              <li className={`item item-time ${ data.allDay ? 'is-allday' : '' }`}>
                 <h3 className="item-name">
                   <FaRegClock />
-                  <span className="item-name">종료</span>
+                  <span>
+                    {
+                      data.allDay ?
+                      '날짜'
+                      :
+                      '시작'
+                    }
+                  </span>
                 </h3>
-                <p className="item-data">{ moment(data.end).format('M월 D일 HH시 MM분') }</p>
+                <p className="item-data">
+                  {
+                    data.allDay ?
+                    moment.utc(data.start).format('M월 D일')
+                    :
+                    moment.utc(data.start).format('M월 D일 HH시 mm분')
+                  }
+                </p>
               </li>
-            }
-            {
-              data.desc &&
-              <li className="item">
-                <strong className="item-name">내용</strong>
-                <span className="item-data">{ data.desc }</span>
-              </li>
-            }
-            {
-              !data.address && data.place &&
-              <li className="item">
-                <strong className="item-name">장소</strong>
-                <span className="item-data">{ data.place }</span>
-              </li>
-            }
-          </ul>
+              {
+                !data.allDay &&
+                <li className="item item-time">
+                  <h3 className="item-name">
+                    <FaRegClock />
+                    <span>종료</span>
+                  </h3>
+                  <p className="item-data">{ moment.utc(data.end).format('M월 D일 HH시 mm분') }</p>
+                </li>
+              }
+              {
+                data.desc &&
+                <li className="item item-desc">
+                  <h3 className="item-name">
+                    <IoMdInformationCircleOutline size={ 24 } />
+                    <span>내용</span>
+                  </h3>
+                  <span className="item-data">{ data.desc }</span>
+                </li>
+              }
+              {
+                !data.address && data.place &&
+                <li className="item">
+                  <h3 className="item-name">
+                    <FaMapMarkerAlt />
+                    <span>장소</span>
+                  </h3>
+                  <span className="item-data">{ data.place }</span>
+                </li>
+              }
+              {
+                data.link &&
+                <li className="item item-link">
+                  <h3 className="item-name">
+                    <FaLink />
+                    <span>링크</span>
+                  </h3>
+                  <div className="item-data">
+                    {
+                      data.link.split(',').map((data, key) => {
+                        return (
+                          <div key={ key }>
+                            <a href={ data } rel="noopener noreferrer" target="_blank">{ data }</a>
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                </li>
+              }
+              {
+                data.media &&
+                <li className="item item-media">
+                  <h3 className="item-name">
+                    <IoMdPlay />
+                    <span>영상</span>
+                  </h3>
+                  <div className="item-data">
+                    {
+                      data.media.split(',').map((data, key) => {
+                        return (
+                          <div key={ key }>
+                            { data }
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                </li>
+              }
+            </ul>
+          </div>
         </div>
-      </div>
-    </>
-  )
+      </>
+    )
+  }
 }
   
 export default withLvlz(({ state, actions }) => ({

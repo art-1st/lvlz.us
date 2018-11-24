@@ -20,6 +20,12 @@ const App = () => (
         <Route exact path="/" render={() => {
           return <Redirect to={ `/calendar/${ currentYear }/${ currentMonth }/${ currentDate }` } />;
         }} />
+        <Route exact path="/timeline" render={() => {
+          return <Redirect to={ `/calendar/${ currentYear }/${ currentMonth }/${ currentDate }` } />;
+        }} />
+        <Route exact path="/search" render={() => {
+          return <Redirect to={ `/calendar/${ currentYear }/${ currentMonth }/${ currentDate }` } />;
+        }} />
         <Route exact path="/calendar" render={() => {
           return <Redirect to={ `/calendar/${ currentYear }/${ currentMonth }/${ currentDate }` } />;
         }} />

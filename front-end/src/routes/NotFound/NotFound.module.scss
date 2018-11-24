@@ -1,0 +1,24 @@
+.notFound {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('/assets/images/404.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    & :global {
+        .message {
+            position: absolute;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
+            clip: rect(0 0 0 0);
+        }
+    }
+}

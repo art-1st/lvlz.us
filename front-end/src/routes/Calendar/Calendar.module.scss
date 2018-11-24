@@ -203,8 +203,8 @@
         left: 50%;
         z-index: 100;
         width: 60vw;
-        height: 60vh;
-        margin: -30vh 0 0 -30vw;
+        height: 80vh;
+        margin: -40vh 0 0 -30vw;
         border-radius: 23px;
         background: #fff;
         animation-duration: 200ms;
@@ -235,6 +235,7 @@
 
         .title {
             font-size: 2em;
+            line-height: 1.25;
         }
 
         .category {
@@ -369,7 +370,7 @@
 
         .map-area {
             position: relative;
-            height: 400px;
+            height: 480px;
             background: #ccc;
 
             .map {
@@ -381,10 +382,17 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                padding: 20px 32px;
+                padding: 20px 32px 20px 86px;
                 background: rgba(0, 0, 0, 0.8);
                 color: #fff;
                 box-sizing: border-box;
+
+                svg {
+                    position: absolute;
+                    top: 18px;
+                    left: 28px;
+                    opacity: 0.35;
+                }
             }
 
             .place {
@@ -404,7 +412,7 @@
 
             .item {
                 font-size: 1.2em;
-                margin-top: 24px;
+                margin-top: 48px;
 
                 &:first-child {
                     margin-top: 0;
@@ -414,7 +422,7 @@
             .item-time {
                 float: left;
                 width: 50%;
-                margin-bottom: 24px;
+                margin-bottom: 48px;
 
                 &.is-allday {
                     width: 100%;
@@ -427,6 +435,12 @@
                     & + .item {
                         clear: both;
                     }
+                }
+            }
+
+            .item-info {
+                .item-name svg {
+                    top: -2px;
                 }
             }
 

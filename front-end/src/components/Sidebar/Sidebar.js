@@ -37,7 +37,8 @@ class Sidebar extends Component {
       url: "/search",
       icon: MdSearch,
       title: "검색",
-      isActive: this.props.menu === "search"
+      isActive: this.props.menu === "search",
+      isDisabled: true
     }
   ]
 

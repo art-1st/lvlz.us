@@ -25,31 +25,3 @@ export const schedule = async (ctx: Context) => {
         ctx.body = 'Error'
     });
 }
-
-export const holiday = async (ctx: Context) => {
-    let sql = 'SELECT id, title, start, end, allDay FROM holiday WHERE (`start` BETWEEN "' + ctx.query.start + '" AND "' + ctx.query.end + '" OR `end` BETWEEN "' + ctx.query.start + '" AND "' + ctx.query.end + '")';
-    
-    await Database.query(sql)
-    .then(results => {
-        ctx.type = 'application/json';
-        ctx.body = resultParser(results);
-    })
-    .catch(error => {
-        ctx.status = 500;
-        ctx.body = 'Error'
-    });
-}
-
-export const anniversary = async (ctx: Context) => {
-    let sql = 'SELECT id, title, start, end, allDay FROM anniversary WHERE (`start` BETWEEN "' + ctx.query.start + '" AND "' + ctx.query.end + '" OR `end` BETWEEN "' + ctx.query.start + '" AND "' + ctx.query.end + '")';
-    
-    await Database.query(sql)
-    .then(results => {
-        ctx.type = 'application/json';
-        ctx.body = resultParser(results);
-    })
-    .catch(error => {
-        ctx.status = 500;
-        ctx.body = 'Error'
-    });
-}
