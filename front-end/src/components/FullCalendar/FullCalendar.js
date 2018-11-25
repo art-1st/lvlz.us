@@ -282,6 +282,7 @@ class EventModal extends Component {
   ReactPlayerConf = {
     youtube: {
       playerVars: {
+        enablejsapi: 1,
         controls: 1,
         showinfo: 1,
         origin: `${ document.location.protocol }//${ document.location.hostname }`
