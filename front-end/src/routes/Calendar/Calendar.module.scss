@@ -280,6 +280,18 @@
                 }
             }
         }
+
+        &.c-tv.tv-music {
+            .header {
+                background-color: map-deep-get($event-class, tv, tv-music, bgColor);
+
+                .title,
+                .category {
+                    color: map-deep-get($event-class, tv, tv-music, color);
+                }
+            }
+        }
+        
         &.c-radio {
             .header {
                 background-color: map-deep-get($event-class, radio, bgColor);

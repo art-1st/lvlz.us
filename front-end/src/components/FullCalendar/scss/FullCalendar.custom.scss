@@ -108,6 +108,11 @@
         // }
     }
 
+    &.c-tv.tv-music {
+        background-color: map-deep-get($event-class, tv, tv-music, bgColor);
+        color: map-deep-get($event-class, tv, tv-music, color);
+    }
+
     &.c-tv.tv-record {
         background-color: map-deep-get($event-class, tv, tv-record, bgColor);
         color: map-deep-get($event-class, tv, tv-record, color);

@@ -255,7 +255,7 @@ class FullCalendar extends Component {
                     <li><a href={`/calendar/${this.state.yearCalData}/9/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-09-01`) } }>9</a></li>
                     <li><a href={`/calendar/${this.state.yearCalData}/10/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-10-01`) } }>10</a></li>
                     <li><a href={`/calendar/${this.state.yearCalData}/11/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-11-01`) } }>11</a></li>
-                    <li><a href={`/calendar/${this.state.yearCalData}/12/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-01-01`) } }>12</a></li>
+                    <li><a href={`/calendar/${this.state.yearCalData}/12/1`} onClick={(e) => { e.preventDefault(); this.gotoDate(`${this.state.yearCalData}-12-01`) } }>12</a></li>
                   </ul>
                 </div>
               </div>
