@@ -3,6 +3,6 @@ import * as geocodeCtrl from './geocode.ctrl';
 
 const geocode: Router = new Router();
 
-geocode.get('/:query', geocodeCtrl.geocode);
+geocode.get('/naver', geocodeCtrl.naver);
 
 export default geocode;

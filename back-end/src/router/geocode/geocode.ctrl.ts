@@ -3,10 +3,10 @@ import axios from 'axios';
 
 // 왜 안될까?
 
-export const geocode = async (ctx: Context) => {
+export const naver = async (ctx: Context) => {
     await axios.get('https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode', {
         params: {
-            query: ctx.params.query
+            query: ctx.query.query
         },
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',

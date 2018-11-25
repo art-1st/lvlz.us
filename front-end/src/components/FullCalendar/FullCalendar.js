@@ -283,7 +283,8 @@ class EventModal extends Component {
     youtube: {
       playerVars: {
         controls: 1,
-        showinfo: 1
+        showinfo: 1,
+        origin: `${ document.location.protocol }//${ document.location.hostname }`
       }
     }
   }
