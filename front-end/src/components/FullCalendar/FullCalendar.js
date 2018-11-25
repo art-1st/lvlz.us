@@ -301,7 +301,7 @@ class EventModal extends Component {
   }
 
   getCoords = async (address) => {
-    await axios.get(`//${ this.props.API_DOMAIN }/geocode/${ address }`)
+    await axios.get(`//${ this.props.API_DOMAIN }/geocode/naver?query=${ address }`)
     .then(response => {
       this.setState({
         coords: {
