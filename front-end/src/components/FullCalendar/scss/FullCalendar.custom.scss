@@ -29,6 +29,47 @@
     padding: 0;
 }
 
+.fc .fc-day-header {
+    padding-bottom: 8px !important;
+}
+
+.fc .fc-day-number {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding-left: 6px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.fc td.fc-day-top.fc-today {
+    position: relative;
+
+    .fc-day-number {
+        position: relative;
+        border-radius: 100%;
+        font-weight: bold;
+        color: #fff;
+
+        &::before {
+            display: block;
+            position: absolute;
+            top: -3px;
+            left: 2px;
+            z-index: -1;
+            width: 28px;
+            height: 28px;
+            border-radius: 100%;
+            background-color: #508bed;
+            content: "";
+        }
+    }
+}
+
+.fc .fc-bg td.fc-today {
+    position: relative;
+    background-color: #f1f4ff;
+}
+
 @media only screen and (max-width: 640px) {
     .fc .fc-time {
         position: absolute;
