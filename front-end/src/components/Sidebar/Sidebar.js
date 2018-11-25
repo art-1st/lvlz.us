@@ -46,7 +46,8 @@ class Sidebar extends Component {
     return (
       <header className={ styles.header }>
         <h1 className="title">
-          LOGO
+          러블리즈 팬덤<br />
+          스케줄 캘린더
         </h1>
         <nav className={ styles.nav }>
           <ul>

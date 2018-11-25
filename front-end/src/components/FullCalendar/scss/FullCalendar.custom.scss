@@ -86,6 +86,11 @@
 --------------------------------------------------------------------------------------------------*/
 
 .fc .fc-body .fc-event {
+    &.c-holiday,
+    &.c-anniv {
+        pointer-events: none;
+    }
+
     &.c-tv {
         background-color: map-deep-get($event-class, tv, bgColor);
         color: map-deep-get($event-class, tv, color);

@@ -68,12 +68,13 @@ class FullCalendar extends Component {
           color: 'transparent',
           borderColor: 'red',
           textColor: 'red',
-          className: 'holiday'
+          className: 'c-holiday'
         },
         {
           events: EVENT_ANNIVERSARY,
           color: '#FF5858',
-          textColor: 'white'
+          textColor: 'white',
+          className: 'c-anniv'
         }
       ],
       eventLimit: true,

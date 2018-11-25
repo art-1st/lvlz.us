@@ -213,7 +213,7 @@
         animation-name: modal;
         animation-timing-function: ease;
 
-        @media only screen and (max-width: 640px) {
+        @media only screen and (max-width: 960px) {
             overflow-y: scroll;
             top: 80px;
             right: 0;
@@ -222,8 +222,20 @@
             width: auto;
             height: auto;
             margin: 0;
-            border-radius: 0;
+            border-radius: 23px 23px 0 0;
         }
+
+        // @media only screen and (max-width: 640px) {
+        //     overflow-y: scroll;
+        //     top: 80px;
+        //     right: 0;
+        //     bottom: 0;
+        //     left: 0;
+        //     width: auto;
+        //     height: auto;
+        //     margin: 0;
+        //     border-radius: 0;
+        // }
 
         .header {
             margin: 0;
@@ -419,11 +431,6 @@
                 &:first-child {
                     margin-top: 0;
                 }
-            }
-
-            .item-name {
-                display: block;
-                font-weight: bold;
 
                 &.item-time {
                     float: left;
@@ -443,6 +450,11 @@
                         }
                     }
                 }
+            }
+
+            .item-name {
+                display: block;
+                font-weight: bold;
 
                 &.item-desc {
                     .item-name svg {
