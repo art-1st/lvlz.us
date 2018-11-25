@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { GoCalendar } from 'react-icons/go';
 import { MdHome, MdTimeline, MdSearch } from 'react-icons/md';
+import { IoIosMail } from 'react-icons/io';
 
 import styles from './Sidebar.module.scss';
 
@@ -68,6 +69,18 @@ class Sidebar extends Component {
                 );
               })
             }
+            <li className="nav-item">
+              <a href="mailto:admin@art1st.me&subject=[스케줄 제보] ">
+                <IoIosMail className="item-ico" />
+                <span className="item-title">스케줄 제보</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="mailto:admin@art1st.me&subject=[개선/버그 피드백] ">
+                <IoIosMail className="item-ico" />
+                <span className="item-title">개선/버그 피드백</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </header>
