@@ -463,6 +463,10 @@
                 color: #fff;
                 box-sizing: border-box;
 
+                @include m-mobile {
+                    padding-bottom: 30px;
+                }
+
                 svg {
                     position: absolute;
                     top: 18px;
@@ -473,12 +477,14 @@
 
             .place {
                 font-size: 1.4em;
+                line-height: 1.25;
                 font-weight: bold;
             }
 
             .address {
                 display: block;
                 margin-top: 6px;
+                line-height: 1.25;
                 opacity: 0.7;
             }
         }
@@ -570,6 +576,10 @@
                 color: #555;
                 text-decoration: none;
                 box-sizing: border-box;
+
+                @include m-mobile {
+                    flex: 0 0 240px;
+                }
 
                 &:first-child {
                     margin-left: 0;

@@ -310,8 +310,8 @@ class EventModal extends Component {
     .then(response => {
       this.setState({
         coords: {
-          lat: response.data.body.addresses[0].y,
-          lng: response.data.body.addresses[0].x
+          lat: response.data.addresses[0].y,
+          lng: response.data.addresses[0].x
         }
       })
     })

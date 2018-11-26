@@ -16,7 +16,7 @@ export const naver = async (ctx: Context) => {
     })
     .then(response => {
         ctx.type = 'application/json';
-        ctx.body = JSON.stringify(response.data);
+        ctx.body = response.data;
     })
     .catch(error => {
         ctx.status = 500;
