@@ -47,6 +47,7 @@
             left: 10vw;
             right: 10vw;
             width: auto;
+            height: 340px;
         }
     }
 
@@ -89,6 +90,10 @@
             border: 1px solid transparent;
             color: #555;
             box-sizing: border-box;
+
+            @include m-mobile {
+                padding: 10px 0;
+            }
 
             &:hover {
                 font-weight: 700;
