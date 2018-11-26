@@ -19,11 +19,13 @@ import {
 import {
   IoMdArrowDropdown,
   IoMdArrowDropup,
+  IoIosArrowDown,
   IoMdInformationCircleOutline,
   IoMdPlay
 } from 'react-icons/io';
 import { ReactComponent as LogoNaverTv } from '../../assets/svg/navertv.svg';
 
+import { isMobile } from 'react-device-detect';
 import { YYYYMMDDHyphenToSlash, YYYMMDDtoYYYYMD } from '../../tools/misc';
 import { Calendar } from 'fullcalendar';
 import 'fullcalendar/dist/locales/ko';
@@ -49,7 +51,7 @@ class FullCalendar extends Component {
   componentDidMount() {
     this.Calendar = new Calendar(this.refs.fc, {
       theme: true,
-      // locale: 'ko',
+      locale: 'ko',
       timeZone: 'UTC+09:00',
       defaultView: 'month',
       defaultDate: this.props.date,
@@ -77,7 +79,7 @@ class FullCalendar extends Component {
           className: 'c-anniv'
         }
       ],
-      eventLimit: true,
+      eventLimit: isMobile ? false : true,
       loading: (isLoaded, view) => {
         isLoaded
         ? this.setState({ onLoad: false })
@@ -329,14 +331,19 @@ class EventModal extends Component {
             <h2 className="title">
               { data.title }
             </h2>
+            {
+              isMobile &&
+              <button className="close-modal" onClick={ clearEvent }>
+                <IoIosArrowDown size={ 32 } />
+              </button>
+            }
           </div>
           {
             data.address &&
             <div className="map-area">
               <NaverMap
                 style={{
-                  width: '100%',
-                  height: '480px'
+                  width: '100%'
                 }}
                 defaultCenter={ this.state.coords }
                 center={ this.state.coords }

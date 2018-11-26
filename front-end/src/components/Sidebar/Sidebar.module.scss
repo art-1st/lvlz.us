@@ -1,5 +1,7 @@
+@import '../../scss/mixins';
+
 $sidebar-width: 240px;
-$sidebar-width-mobile: 80px;
+$sidebar-width-mobile: 60px;
 
 .header {
     flex: 0 0 $sidebar-width;
@@ -9,28 +11,46 @@ $sidebar-width-mobile: 80px;
     position: relative;
     z-index: 10;
     border-right: 1px solid #e6e6e6;
-    // -webkit-box-shadow: 0px 0px 9px 3px rgba(0,0,0,0.05);
-    // -moz-box-shadow: 0px 0px 9px 3px rgba(0,0,0,0.05);
-    // box-shadow: 0px 0px 9px 3px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
 
-    @media only screen and (max-width: 640px) {
+    @include m-mobile {
+        overflow: hidden;
         flex: 0 0 $sidebar-width-mobile;
         height: $sidebar-width-mobile;
-        overflow: hidden;
+        border-bottom: 1px solid #e5e5e5;
+        -webkit-box-shadow: 0px 0px 9px 3px rgba(0,0,0,0.05);
+        -moz-box-shadow: 0px 0px 9px 3px rgba(0,0,0,0.05);
+        box-shadow: 0px 0px 9px 3px rgba(0,0,0,0.05);
     }
 
     & :global {
+
         .title {
             padding: 15px;
             text-align: center;
         }
+
+        @include m-mobile {
+            .hb-menu {
+                position: absolute;
+                top: 14px;
+                right: 12px;
+
+                button {
+                    margin: 0;
+                    padding: 0;
+                    background: transparent;
+                    border: 0;
+                    line-height: 0;
+                }
+            }
+        }
     }
 }
 
-.is-folded {
-    flex: 0 0 80px;
-    transition: all 0.3s ease;
+.is-expanded {
+    flex: 0 0 100%;
+    height: 100%;
 }
 
 .nav {

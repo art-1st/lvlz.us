@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { isMobile } from 'react-device-detect';
 import { GoCalendar } from 'react-icons/go';
 import { MdHome, MdTimeline, MdSearch } from 'react-icons/md';
-import { IoIosMail } from 'react-icons/io';
+import { IoIosMail, IoMdMenu } from 'react-icons/io';
 
 import styles from './Sidebar.module.scss';
 
 class Sidebar extends Component {
   
   state = {
-    current: this.props.menu
+    current: this.props.menu,
+    isExpanded: false
   }
 
   menus = [
@@ -45,19 +47,27 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <header className={ styles.header }>
+      <header className={`${ styles.header } ${ this.state.isExpanded ? styles['is-expanded'] : '' }`}>
         <h1 className="title">
           러블리즈 팬덤<br />
           스케줄 캘린더
         </h1>
         <nav className={ styles.nav }>
+          {
+            isMobile &&
+            <div className="hb-menu">
+              <button onClick={() => { this.setState((prevState) => { return { isExpanded: !prevState.isExpanded } }) }} title="메뉴">
+                <IoMdMenu size={ 32 } color="#555" />
+              </button>
+            </div>
+          }
           <ul>
             {
-              this.menus.map((value, i) => {
+              this.menus.map((value, key) => {
                 return (
                   <li
-                    className={`nav-item ${ value.isActive ? 'is-active' : '' } ${ value.isDisabled ? 'is-disabled' : '' }`}
-                    key={ i }
+                    className={`nav-item${ value.isActive ? ' is-active' : '' }${ value.isDisabled ? ' is-disabled' : '' }`}
+                    key={ key }
                   >
                     <Link to={ value.url }>
                       <value.icon className="item-ico" />
