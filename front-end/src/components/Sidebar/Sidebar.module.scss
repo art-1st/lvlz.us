@@ -30,19 +30,22 @@ $sidebar-width-mobile: 60px;
             text-align: center;
         }
 
-        @include m-mobile {
-            .hb-menu {
-                position: absolute;
-                top: 14px;
-                right: 12px;
+        .hb-menu {
+            display: none;
+            position: absolute;
+            top: 14px;
+            right: 12px;
 
-                button {
-                    margin: 0;
-                    padding: 0;
-                    background: transparent;
-                    border: 0;
-                    line-height: 0;
-                }
+            @include m-mobile {
+                display: block;
+            }
+
+            button {
+                margin: 0;
+                padding: 0;
+                background: transparent;
+                border: 0;
+                line-height: 0;
             }
         }
     }

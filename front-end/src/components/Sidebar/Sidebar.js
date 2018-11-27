@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { isMobile } from 'react-device-detect';
 import { GoCalendar } from 'react-icons/go';
 import { MdHome, MdTimeline, MdSearch } from 'react-icons/md';
 import { IoIosMail, IoMdMenu } from 'react-icons/io';
@@ -53,14 +52,11 @@ class Sidebar extends Component {
           스케줄 캘린더
         </h1>
         <nav className={ styles.nav }>
-          {
-            isMobile &&
-            <div className="hb-menu">
-              <button onClick={() => { this.setState((prevState) => { return { isExpanded: !prevState.isExpanded } }) }} title="메뉴">
-                <IoMdMenu size={ 32 } color="#555" />
-              </button>
-            </div>
-          }
+          <div className="hb-menu">
+            <button onClick={() => { this.setState((prevState) => { return { isExpanded: !prevState.isExpanded } }) }} title="메뉴">
+              <IoMdMenu size={ 32 } color="#555" />
+            </button>
+          </div>
           <ul>
             {
               this.menus.map((value, key) => {

@@ -241,6 +241,7 @@
             height: auto;
             margin: 0;
             border-radius: 0;
+            animation-name: modal-mobile;
         }
 
         // @media only screen and (max-width: 640px) {
@@ -446,7 +447,7 @@
             background: #ccc;
 
             @include m-mobile {
-                height: 320px;
+                height: 340px;
             }
 
             #react-naver-map {
@@ -479,6 +480,10 @@
                 font-size: 1.4em;
                 line-height: 1.25;
                 font-weight: bold;
+
+                @include m-mobile {
+                    font-size: 1.2em;
+                }
             }
 
             .address {
@@ -486,6 +491,10 @@
                 margin-top: 6px;
                 line-height: 1.25;
                 opacity: 0.7;
+
+                @include m-mobile {
+                    font-size: .95em;
+                }
             }
         }
 
@@ -578,7 +587,8 @@
                 box-sizing: border-box;
 
                 @include m-mobile {
-                    flex: 0 0 240px;
+                    flex: 0 0 360px;
+                    height: 180px;
                 }
 
                 &:first-child {
@@ -639,5 +649,13 @@
     }
     to {
         top: 50%;
+    }
+}
+@keyframes :global(modal-mobile) {
+    from {
+        top: 100%;
+    }
+    to {
+        top: 0%;
     }
 }

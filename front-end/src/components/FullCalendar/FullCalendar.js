@@ -51,7 +51,7 @@ class FullCalendar extends Component {
   componentDidMount() {
     this.Calendar = new Calendar(this.refs.fc, {
       theme: true,
-      locale: 'ko',
+      // locale: 'ko',
       timeZone: 'UTC+09:00',
       defaultView: 'month',
       defaultDate: this.props.date,
