@@ -428,5 +428,10 @@
         "allDay": true,
         "title": "성탄절",
         "start": "2019-12-25"
+    },
+    {
+        "allDay": true,
+        "title": "신정",
+        "start": "2020-01-01"
     }
 ]
