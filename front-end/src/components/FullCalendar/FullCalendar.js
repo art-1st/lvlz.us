@@ -331,12 +331,9 @@ class EventModal extends Component {
             <h2 className="title">
               { data.title }
             </h2>
-            {
-              isMobile &&
-              <button className="close-modal" onClick={ clearEvent }>
-                <IoIosArrowDown size={ 32 } />
-              </button>
-            }
+            <button className="close-modal" onClick={ clearEvent }>
+              <IoIosArrowDown size={ 32 } />
+            </button>
           </div>
           {
             data.address &&

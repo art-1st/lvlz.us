@@ -266,15 +266,20 @@
             @include m-mobile {
                 border-radius: 0;
                 padding: 16px 80px 16px 24px;
+            }
 
-                .close-modal {
-                    position: absolute;
-                    top: 50%;
-                    right: 16px;
-                    margin-top: -16px;
-                    border: 0;
-                    background: none;
-                    appearance: none;
+            .close-modal {
+                display: none;
+                position: absolute;
+                top: 50%;
+                right: 16px;
+                margin-top: -16px;
+                border: 0;
+                background: none;
+                appearance: none;
+
+                @include m-mobile {
+                    display: block;
                 }
             }
         }
