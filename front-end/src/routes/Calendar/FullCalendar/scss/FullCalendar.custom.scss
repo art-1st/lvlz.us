@@ -1,6 +1,6 @@
-@import '../../scss/functions';
-@import '../../scss/variables';
-@import '../../scss/mixins';
+@import '../../../../scss/functions';
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
 
 /* Custom Layout
 --------------------------------------------------------------------------------------------------*/
@@ -21,8 +21,12 @@
 
 .fc .fc-more-popover {
     padding: 10px;
+    border: 1px solid #ccc;
     background-color: #fff;
     box-sizing: border-box;
+    -webkit-box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.5);
 }
 
 .fc .fc-more-popover .fc-event-container {
@@ -73,6 +77,19 @@
 .fc .fc-bg td.fc-today {
     position: relative;
     background-color: #f1f4ff;
+}
+
+.fc .fc-more-cell {
+    div {
+        display: table-cell;
+    }
+
+    .fc-more {
+        display: block;
+        font-weight: bold;
+        line-height: 23px;
+        color: #316ac7;
+    }
 }
 
 @media only screen and (max-width: 640px) {

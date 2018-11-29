@@ -1,37 +1,41 @@
-import replaceAll from 'replaceall';
+import moment from 'moment';
 
-const YYYYMMDDHyphenToSlash = (date) => {
-    return replaceAll('-', '/', date);
+const YYYYMMDD = (_date, _delimeter) => {
+    let date = new Date(_date);
+    let delimeter = _delimeter || '-';
+
+    return moment(date).format(`YYYY${ delimeter }MM${ delimeter }DD`)
 }
 
-const YYYYMMDDSlashToHyphen = (date) => {
-    return replaceAll('/', '-', date);
+const YYYYMD = (_date, _delimeter) => {
+    let date = new Date(_date);
+    let delimeter = _delimeter || '-';
+
+    return moment(date).format(`YYYY${ delimeter }M${ delimeter }D`)
 }
 
-const YYYMMDDtoYYYYMD = (date) => {
-    let S;
+const YYYY = (_date) => {
+    let date = new Date(_date);
 
-    if(date.indexOf('-') > -1) {
-        S = '-';
-    } else if(date.indexOf('/') > -1) {
-        S = '/';
-    } else {
-        return console.error('format is not compatible');
-    }
+    return moment(date).format('YYYY');
+}
 
-    if(date.length === 10) {
-        let YYYY = Number(date.substring(0, 4));
-        let M = Number(date.substring(5, 7))
-        let D = Number(date.substring(8, 10));
+const M = (_date) => {
+    let date = new Date(_date);
 
-        return `${ YYYY }${ S }${ M }${ S }${ D }`;
-    } else {
-        return console.error('format is not compatible');
-    }
+    return moment(date).format('M');
+}
+
+const zeroPad = (n, width, z) => {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
 export {
-    YYYYMMDDHyphenToSlash,
-    YYYYMMDDSlashToHyphen,
-    YYYMMDDtoYYYYMD
+    YYYYMMDD,
+    YYYYMD,
+    YYYY,
+    M,
+    zeroPad
 };

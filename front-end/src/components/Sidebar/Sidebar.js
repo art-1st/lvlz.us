@@ -8,7 +8,6 @@ import { IoIosMail, IoMdMenu } from 'react-icons/io';
 import styles from './Sidebar.module.scss';
 
 class Sidebar extends Component {
-  
   state = {
     current: this.props.menu,
     isExpanded: false

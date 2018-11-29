@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import { Sidebar, FullCalendar } from '../../components';
+import { Sidebar } from '../../components';
+import FullCalendar from './FullCalendar';
 import { withLvlz } from '../../context/lvlz';
+
+import { zeroPad } from '../../tools/misc';
 
 import styles from './Calendar.module.scss';
 
@@ -9,8 +12,8 @@ class Calendar extends Component {
 
   state = {
     Y: this.props.match.params.Y,
-    M: Number(this.props.match.params.M) < 10 ? '0' + this.props.match.params.M : this.props.match.params.M,
-    D: Number(this.props.match.params.D) < 10 ? '0' + this.props.match.params.D : this.props.match.params.D,
+    M: zeroPad(this.props.match.params.M, 2),
+    D: zeroPad(this.props.match.params.D, 2),
     eventId: this.props.match.params.id,
     calendarHeight: 0
   }

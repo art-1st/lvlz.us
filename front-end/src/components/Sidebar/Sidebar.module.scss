@@ -11,7 +11,7 @@ $sidebar-width-mobile: 60px;
     position: relative;
     z-index: 10;
     border-right: 1px solid #e6e6e6;
-    transition: all 0.3s ease;
+    // transition: all 0.3s ease;
 
     @include m-mobile {
         overflow: hidden;
