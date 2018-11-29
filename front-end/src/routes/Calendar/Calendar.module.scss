@@ -18,10 +18,13 @@
 
 .main :global {
     .header {
-        margin-bottom: 40px;
+        position: relative;
+        z-index: 3;
+        padding-bottom: 40px;
+        background-color: #fff;
 
         @include m-mobile {
-            padding-top: 20px;
+            padding: 16px 0;
             text-align: center;   
         }
     }

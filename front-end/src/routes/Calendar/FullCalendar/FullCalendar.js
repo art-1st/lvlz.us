@@ -129,7 +129,8 @@ class FullCalendar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.props.calendarHeight !== nextProps.calendarHeight) {
-      this.Calendar.setOption('height', nextProps.calendarHeight - 120);
+      let m = isMobile ? 70 : 120;
+      this.Calendar.setOption('height', nextProps.calendarHeight - m);
     }
   }
 
