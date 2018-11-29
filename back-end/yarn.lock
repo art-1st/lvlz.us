@@ -108,14 +108,6 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
-"@types/got@^9.2.1":
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com/@types/got/-/got-9.2.1.tgz#962e5a041d66f8be484740d76a6ca15d2a8d141b"
-  integrity sha512-3l1/X5MBeuPFWEcsEb5UVKrdzuXJ4DXkKHv+on9sYK0+BEO4OmIwdkLorYry3kVbdyFTlgF4yP+F5aeZoKIRDw==
-  dependencies:
-    "@types/node" "*"
-    "@types/tough-cookie" "*"
-
 "@types/http-assert@*":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/http-assert/-/http-assert-1.2.2.tgz#17dfe5a82184a8898935d96fe2eaedd37d22d9a4"
@@ -180,11 +172,6 @@
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
-
-"@types/tough-cookie@*":
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-2.3.4.tgz#821878b81bfab971b93a265a561d54ea61f9059f"
-  integrity sha512-Set5ZdrAaKI/qHdFlVMgm/GsAv/wkXhSTuZFkJ+JI7HK+wIkIlOaUXSXieIvJ0+OvGIqtREFoE+NHJtEq0gtEw==
 
 abbrev@1:
   version "1.1.1"
@@ -1785,7 +1772,7 @@ got@^6.7.1:
     unzip-response "^2.0.1"
     url-parse-lax "^1.0.0"
 
-got@^9.3.2, got@~9.3.2:
+got@~9.3.2:
   version "9.3.2"
   resolved "https://registry.yarnpkg.com/got/-/got-9.3.2.tgz#f6e3bd063aa8f461ccd924afa2ba2b61deab3989"
   integrity sha512-OyKOUg71IKvwb8Uj0KP6EN3+qVVvXmYsFznU1fnwUnKtDbZnwSlAi7muNlu4HhBfN9dImtlgg9e7H0g5qVdaeQ==

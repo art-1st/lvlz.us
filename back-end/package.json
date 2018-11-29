@@ -24,10 +24,8 @@
   "dependencies": {
     "@koa/cors": "2",
     "@types/axios": "^0.14.0",
-    "@types/got": "^9.2.1",
     "axios": "^0.18.0",
     "dotenv": "^5.0.1",
-    "got": "^9.3.2",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.10",
