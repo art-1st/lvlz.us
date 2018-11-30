@@ -15,15 +15,11 @@ const YYYYMD = (_date, _delimeter) => {
 }
 
 const YYYY = (_date) => {
-    let date = new Date(_date);
-
-    return moment(date).format('YYYY');
+    return moment(_date, "YYYY-MM-D").format("YYYY");
 }
 
 const M = (_date) => {
-    let date = new Date(_date);
-
-    return moment(date).format('M');
+    return moment(_date, "YYYY-MM-D").format("M");
 }
 
 const zeroPad = (n, width, z) => {

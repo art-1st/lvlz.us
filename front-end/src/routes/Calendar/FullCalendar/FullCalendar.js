@@ -235,7 +235,7 @@ class FullCalendar extends Component {
               (e) => {
                 e.preventDefault();
 
-                let date = moment(new Date(`${ this.state.yearCalData }-${ month }-1`)).format('YYYY-MM-DD');
+                let date = moment(`${ this.state.yearCalData }-${ month }-1`, 'YYYY-M-D').format('YYYY-MM-DD');
                 this.gotoDate(date);
               }
             }
