@@ -255,8 +255,8 @@
 
 /* Media Query
 --------------------------------------------------------------------------------------------------*/
-// @media (max-device-width: 640px) {
-//     .fc-event {
-//         font-size: .6em !important;
-//     }
-// }
+@media (max-device-width: 640px) {
+    .fc .fc-event {
+        font-size: .6em !important;
+    }
+}
