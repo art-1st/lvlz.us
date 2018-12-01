@@ -1,6 +1,6 @@
 import { defineLocale } from 'fullcalendar';
 
-defineLocale("ko", {
+defineLocale("xx", {
   buttonText: {
     prev: "이전달",
     next: "다음달",

@@ -34,7 +34,7 @@ class FullCalendar extends Component {
     const { API_DOMAIN } = this.props;
     this.Calendar = new Calendar(this.refs.fc, {
       theme: true,
-      locale: 'ko',
+      locale: 'xx',
       timeZone: 'UTC+09:00',
       defaultView: 'month',
       defaultDate: this.props.date,
