@@ -13,7 +13,6 @@ import { YYYYMD, YYYY, M } from '../../../tools/misc';
 import { FaAngleLeft, FaAngleDoubleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 
-import './locale/ko';
 import './FullCalendar.scss';
 
 const EVENT_HOLIDAY = require('../../../assets/data/holiday.json');
@@ -34,7 +33,7 @@ class FullCalendar extends Component {
     const { API_DOMAIN } = this.props;
     this.Calendar = new Calendar(this.refs.fc, {
       theme: true,
-      locale: 'xx',
+      locale: 'en',
       timeZone: 'UTC+09:00',
       defaultView: 'month',
       defaultDate: this.props.date,
@@ -43,6 +42,9 @@ class FullCalendar extends Component {
       eventTimeFormat: {
         hour: 'numeric',
         minute: '2-digit'
+      },
+      dayPopoverFormat: {
+        day: 'numeric'
       },
       eventSources: [
         {
@@ -70,7 +72,7 @@ class FullCalendar extends Component {
       },
       datesRender: (info) => {
         if(this.state.onLoad) {
-          let d = new Date(info.view.dateProfile.currentRange.start);
+          let d = new Date(info.view.currentStart);
           let dD = `${ d.getUTCFullYear() }-${ d.getUTCMonth() + 1 }-${ d.getUTCDate() }`;
           let dR = `${ d.getUTCFullYear() }/${ d.getUTCMonth() + 1 }/${ d.getUTCDate() }`;
 
