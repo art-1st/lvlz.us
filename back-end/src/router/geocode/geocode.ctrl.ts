@@ -1,8 +1,6 @@
 import { Context } from 'koa';
 import axios from 'axios';
 
-// 왜 안될까?
-
 export const naver = async (ctx: Context) => {
     await axios.get('https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode', {
         params: {

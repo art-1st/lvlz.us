@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
+import { NaverTV, VLive } from '../../../../components'
 import { NaverMap, Marker } from 'react-naver-maps';
 import ReactPlayer from 'react-player';
 
 import { FaRegClock, FaMapMarkerAlt, FaMapMarkedAlt, FaLink } from 'react-icons/fa';
 import { IoIosArrowDown, IoMdInformationCircleOutline, IoMdPlay } from 'react-icons/io'
-
-import { ReactComponent as LogoNaverTv } from '../../../../assets/svg/navertv.svg';
 // import { isMobile } from 'react-device-detect';
 
 class EventModal extends Component {
@@ -36,9 +35,9 @@ class EventModal extends Component {
     }
   
     componentDidMount() {
-      if(this.props.data.address) {
-        this.getCoords(this.props.data.address);
-      }
+      // if(this.props.data.address) {
+      //   this.getCoords(this.props.data.address);
+      // }
     }
   
     componentWillReceiveProps(nextProps) {
@@ -74,9 +73,24 @@ class EventModal extends Component {
         console.log(error);
       })
     }
+
+    getNaverTvIframe = async (id) => {
+      await axios.get(`//${ this.props.API_DOMAIN }/media/navertv`, {
+        params: {
+          v: id
+        }
+      })
+      .then(response => {
+        console.log(response.data);
+        return response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
   
     render() {
-      const { data, clearEvent } = this.props;
+      const { data, clearEvent, API_DOMAIN } = this.props;
   
       return (
         <>
@@ -198,38 +212,26 @@ class EventModal extends Component {
                     </h3>
                     <div className="item-data">
                       {
-                        data.media.split(',').map((data, key) => {
-                          if(data.indexOf('youtube.com/') > -1) {
+                        data.media.split(',').map((mediaData, key) => {
+                          if(mediaData.indexOf('youtube.com/') > -1) {
                             return (
                               <div className="video-container video-youtube" key={ key }>
-                                <ReactPlayer className="video-container" width="100%" height="100%" config={ this.ReactPlayerConf } url={ data } />
+                                <ReactPlayer className="video-container" width="100%" height="100%" config={ this.ReactPlayerConf } url={ mediaData } />
                               </div>
                             );
-                          } else if(data.indexOf('tv.naver.com/') > -1) {
+                          } else if(mediaData.indexOf('tv.naver.com/') > -1) {
+                            let id = mediaData.split('/v/')[1];
                             return (
-                              <a href={ data } rel="noopener noreferrer" target="_blank" className="video-container video-navertv is-not-supported" key={ key }>
-                                <div className="logo-area">
-                                  <LogoNaverTv className="logo" />
-                                </div>
-                                <p className="text">
-                                  네이버TV에서 시청하기
-                                </p>
-                              </a>
+                              <NaverTV videoId={ id } width="480" height="270" API_DOMAIN={ API_DOMAIN } key={ key } />
                             )
-                          } else if(data.indexOf('vlive.tv/') > -1) {
+                          } else if(mediaData.indexOf('vlive.tv/') > -1) {
+                            let id = mediaData.split('/video/')[1];
                             return (
-                              <a href={ data } rel="noopener noreferrer" target="_blank" className="video-container video-vlive is-not-supported" key={ key }>
-                                <div className="logo-area">
-                                  <img src="/assets/images/logo_vlive.png" alt="V LIVE" />
-                                </div>
-                                <p className="text">
-                                  V LIVE에서 시청하기
-                                </p>
-                              </a>
+                              <VLive videoId={ id } width="480" height="270" key={ key } />
                             )
                           } else {
                             return (
-                              <a href={ data } rel="noopener noreferrer" target="_blank" className="video-container video-unknown is-not-supported" key={ key }>
+                              <a href={ mediaData } rel="noopener noreferrer" target="_blank" className="video-container video-unknown is-not-supported" key={ key }>
                                 사이트에서 시청하기
                               </a>
                             );
