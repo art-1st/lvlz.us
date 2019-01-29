@@ -645,10 +645,10 @@
                 text-decoration: none;
                 box-sizing: border-box;
 
-                @include m-mobile {
-                    flex: 0 0 360px;
-                    height: 180px;
-                }
+                // @include m-mobile {
+                //     flex: 0 0 360px;
+                //     height: 180px;
+                // }
 
                 &:first-child {
                     margin-left: 0;

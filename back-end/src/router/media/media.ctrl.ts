@@ -1,6 +1,8 @@
 import { Context } from 'koa';
 import axios from 'axios';
 
+// VPC 외부 인터넷 액세스 작업 진행해야 함.
+
 export const navertv = async (ctx: Context) => {
     await axios.get('https://tv.naver.com/oembed', {
         params: {
