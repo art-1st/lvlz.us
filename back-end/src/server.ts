@@ -14,7 +14,9 @@ export default class Server {
 
   middleware(): void {
     const { app } = this;
-    app.use(cors())
+    app.use(cors({
+          origin: "https://lovelyzin.us"
+        }))
        .use(router.routes())
        .use(router.allowedMethods());
   }
