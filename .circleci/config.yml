@@ -55,9 +55,7 @@ jobs:
       - run: cd front-end && yarn build
 
       # install aws & serverless cli
-      - run: sudo apt-get update && sudo apt-get install -y python-dev
-      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
-      - run: sudo python get-pip.py
+      - run: sudo apt-get update && sudo apt-get install python-pip python-dev
       - run: sudo pip install awscli --upgrade
       - run: sudo npm install -g serverless
 
