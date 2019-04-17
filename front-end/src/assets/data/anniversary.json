@@ -365,5 +365,12 @@
         "end": "2018-11-26",
         "allDay": true,
         "className": "anniv fa fa-music"
+    },
+    {
+        "title": "BABYSOUL 디지털 싱글 [조각달] 앨범 발매",
+        "start": "2019-04-23",
+        "end": "2019-04-23",
+        "allDay": true,
+        "className": "anniv fa fa-music"
     }
 ]
