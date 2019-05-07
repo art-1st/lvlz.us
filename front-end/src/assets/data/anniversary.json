@@ -372,5 +372,12 @@
         "end": "2019-04-23",
         "allDay": true,
         "className": "anniv fa fa-music"
+    },
+    {
+        "title": "미니 6집 [ONCE UPON A TIME] 앨범 발매",
+        "start": "2019-05-20",
+        "end": "2019-05-20",
+        "allDay": true,
+        "className": "anniv fa fa-music"
     }
 ]
