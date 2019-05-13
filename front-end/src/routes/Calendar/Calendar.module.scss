@@ -241,15 +241,23 @@
 
     .event-modal {
         position: fixed;
-        top: 50%;
-        left: 50%;
+        // top: 50%;
+        // left: 50%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         z-index: 100;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
-        width: 60vw;
-        height: 80vh;
-        margin: -40vh 0 0 -30vw;
-        border-radius: 23px;
+        // width: 60vw;
+        // height: 80vh;
+        width: auto;
+        height: auto;
+        // margin: -40vh 0 0 -30vw;
+        margin: 0;
+        // border-radius: 23px;
+        border-radius: 0;
         background: #fff;
         animation-duration: 200ms;
         animation-name: modal;
@@ -284,7 +292,8 @@
             position: relative;
             margin: 0;
             padding: 40px 32px;
-            border-radius: 23px 23px 0 0;
+            // border-radius: 23px 23px 0 0;
+            border-radius: 0;
             text-align: left;
 
             @include m-mobile {
@@ -293,7 +302,7 @@
             }
 
             .close-modal {
-                display: none;
+                // display: none;
                 position: absolute;
                 top: 50%;
                 right: 16px;

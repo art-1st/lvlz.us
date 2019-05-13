@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import { Sidebar } from '../../components';
+// import { Sidebar } from '../../components';
 import FullCalendar from './FullCalendar';
 import { withLvlz } from '../../context/lvlz';
 
@@ -36,7 +36,7 @@ class Calendar extends Component {
   render() {
     return (
       <>
-        <Sidebar menu="calendar" />
+        {/* <Sidebar menu="calendar" /> */}
         <main className={ styles.main } ref="main">
           <FullCalendar date={`${ this.state.Y }-${ this.state.M }-${ this.state.D }`} calendarHeight={ this.state.calendarHeight } eventId={ this.state.eventId } />
         </main>
