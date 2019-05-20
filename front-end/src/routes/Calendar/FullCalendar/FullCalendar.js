@@ -110,6 +110,8 @@ class FullCalendar extends Component {
           window.history.replaceState({}, '', NEXT_URI);
           reactGA.pageview(NEXT_URI);
         });
+        let mv = document.getElementById('_viewport')
+        mv.setAttribute('content', 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0');
       }
     });
 
@@ -168,6 +170,8 @@ class FullCalendar extends Component {
     });
     window.history.replaceState({}, '', this.PREV_URI);
     reactGA.pageview(this.PREV_URI);
+    let mv = document.getElementById('_viewport')
+    mv.setAttribute('content', 'width=720');
   }
 
   render() {
