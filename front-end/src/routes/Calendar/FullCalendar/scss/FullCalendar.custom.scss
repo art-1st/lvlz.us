@@ -249,7 +249,8 @@
         // }
     }
     
-    &.c-vlive.vlive-chplus {
+    &.c-vlive.vlive-chplus,
+    &.c-vlive.vlive-fanship {
         background: map-deep-get($event-class, vlive, vlive-chplus, bgMozGradient);
         background: map-deep-get($event-class, vlive, vlive-chplus, bgWebkitGradient);
         background: map-deep-get($event-class, vlive, vlive-chplus, bgGradient);

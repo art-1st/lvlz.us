@@ -453,7 +453,8 @@
             }
         }
         
-        &.c-vlive.vlive-chplus {
+        &.c-vlive.vlive-chplus,
+        &.c-vlive.vlive-fanship {
             .header {
                 background: map-deep-get($event-class, vlive, vlive-chplus, bgMozGradient);
                 background: map-deep-get($event-class, vlive, vlive-chplus, bgWebkitGradient);
