@@ -241,7 +241,7 @@ class EventModal extends Component {
                     </div>
                   </li>
                 }
-                <li>
+                <li className="item">
                   <ins
                     className="adsbygoogle"
                     style={{ display: "inline-block", width: "468px", height: "60px" }}
