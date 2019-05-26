@@ -241,6 +241,17 @@ class EventModal extends Component {
                     </div>
                   </li>
                 }
+                <li>
+                  <ins
+                    className="adsbygoogle"
+                    style={{ display: "inline-block", width: "468px", height: "60px" }}
+                    data-ad-client="ca-pub-8014257755780542"
+                    data-ad-slot="1097326307"
+                  />
+                  <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+                  </script>
+                </li>
               </ul>
             </div>
           </div>
