@@ -241,6 +241,54 @@
     },
     {
         "allDay": true,
+        "title": "소울이의 29번째 생일",
+        "start": "2020-07-06",
+        "className": "anniv fa fa-birthday-cake"
+    },
+    {
+        "allDay": true,
+        "title": "지애의 28번째 생일",
+        "start": "2020-05-21",
+        "className": "anniv fa fa-birthday-cake"
+    },
+    {
+        "allDay": true,
+        "title": "지수의 27번째 생일",
+        "start": "2020-02-11",
+        "className": "anniv fa fa-birthday-cake"
+    },
+    {
+        "allDay": true,
+        "title": "미주의 27번째 생일",
+        "start": "2020-09-23",
+        "className": "anniv fa fa-birthday-cake"
+    },
+    {
+        "allDay": true,
+        "title": "케이의 26번째 생일",
+        "start": "2020-03-20",
+        "className": "anniv fa fa-birthday-cake"
+    },
+    {
+        "allDay": true,
+        "title": "명은이의 25번째 생일",
+        "start": "2020-06-12",
+        "className": "anniv fa fa-birthday-cake"
+    },
+    {
+        "allDay": true,
+        "title": "수정이의 24번째 생일",
+        "start": "2020-11-19",
+        "className": "anniv fa fa-birthday-cake"
+    },
+    {
+        "allDay": true,
+        "title": "예인이의 23번째 생일",
+        "start": "2020-06-04",
+        "className": "anniv fa fa-birthday-cake"
+    },
+    {
+        "allDay": true,
         "title": "데뷔 2주년",
         "start": "2016-11-12",
         "className": "anniv fa fa-birthday-cake"
@@ -377,6 +425,13 @@
         "title": "미니 6집 [ONCE UPON A TIME] 앨범 발매",
         "start": "2019-05-20",
         "end": "2019-05-20",
+        "allDay": true,
+        "className": "anniv fa fa-music"
+    },
+    {
+        "title": "김지연 (Kei) 미니 1집 [Over and Over] 앨범 발매",
+        "start": "2019-10-08",
+        "end": "2019-10-08",
         "allDay": true,
         "className": "anniv fa fa-music"
     }

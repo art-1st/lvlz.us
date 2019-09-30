@@ -433,5 +433,90 @@
         "allDay": true,
         "title": "신정",
         "start": "2020-01-01"
+    },
+    {
+        "allDay": true,
+        "title": "설날 연휴",
+        "start": "2020-01-24"
+    },
+    {
+        "allDay": true,
+        "title": "설날",
+        "start": "2020-01-25"
+    },
+    {
+        "allDay": true,
+        "title": "설날 연휴",
+        "start": "2020-01-26"
+    },
+    {
+        "allDay": true,
+        "title": "설날 대체 휴일",
+        "start": "2020-01-27"
+    },
+    {
+        "allDay": true,
+        "title": "삼일절",
+        "start": "2020-03-01"
+    },
+    {
+        "allDay": true,
+        "title": "제 21대 국회의원 선거",
+        "start": "2020-04-15"
+    },
+    {
+        "allDay": true,
+        "title": "석가탄신일",
+        "start": "2020-04-30"
+    },
+    {
+        "allDay": true,
+        "title": "어린이날",
+        "start": "2020-05-05"
+    },
+    {
+        "allDay": true,
+        "title": "현충일",
+        "start": "2020-06-06"
+    },
+    {
+        "allDay": true,
+        "title": "광복절",
+        "start": "2020-08-15"
+    },
+    {
+        "allDay": true,
+        "title": "추석 연휴",
+        "start": "2020-09-30"
+    },
+    {
+        "allDay": true,
+        "title": "추석",
+        "start": "2020-10-01"
+    },
+    {
+        "allDay": true,
+        "title": "추석 연휴",
+        "start": "2020-10-02"
+    },
+    {
+        "allDay": true,
+        "title": "개천절",
+        "start": "2020-10-03"
+    },
+    {
+        "allDay": true,
+        "title": "한글날",
+        "start": "2020-10-09"
+    },
+    {
+        "allDay": true,
+        "title": "성탄절",
+        "start": "2020-12-25"
+    },
+    {
+        "allDay": true,
+        "title": "신정",
+        "start": "2021-01-01"
     }
 ]
