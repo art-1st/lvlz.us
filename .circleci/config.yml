@@ -36,8 +36,8 @@ jobs:
           - v1-dependencies-
 
       - run: sudo npm install -g yarn
-      - run: cd front-end && yarn --ignore-engines install
-      - run: cd back-end && yarn install
+      - run: cd front-end && yarn install
+      - run: cd back-end && yarn --ignore-engines install
 
       - save_cache:
           paths:
