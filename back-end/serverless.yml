@@ -1,5 +1,5 @@
 service:
-  name: lovelyzInUs-api
+  name: sls-api-lovelyzinus
 
 # Add the serverless-webpack plugin
 plugins:
@@ -28,7 +28,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs10.x
   region: ap-northeast-2
   stage: dev
   environment:
@@ -73,6 +73,7 @@ functions:
               - X-Api-Key
               - X-Amz-Security-Token
               - X-Amz-User-Agent
+              - X-Requested-With
               - LAFTEL
             allowCredentials: false
       - http:
@@ -87,6 +88,7 @@ functions:
               - X-Api-Key
               - X-Amz-Security-Token
               - X-Amz-User-Agent
+              - X-Requested-With
               - LAFTEL
             allowCredentials: false
     vpc:
