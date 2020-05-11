@@ -74,7 +74,6 @@ functions:
               - X-Amz-Security-Token
               - X-Amz-User-Agent
               # - X-Requested-With
-              - LAFTEL
             allowCredentials: false
       - http:
           path: /{any+} # this matches any path, the token 'any' doesn't mean anything special
@@ -89,7 +88,6 @@ functions:
               - X-Amz-Security-Token
               - X-Amz-User-Agent
               # - X-Requested-With
-              - LAFTEL
             allowCredentials: false
     vpc:
       securityGroupIds:
